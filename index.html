@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Spack Documentation &mdash; Spack 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'1.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Spack 1.0 documentation" href="#"/>
+        <link rel="next" title="Feature Overview" href="features.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="#" class="icon icon-home"> Spack</a>
+        <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spack.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="#">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="#">Docs</a> &raquo;</li>
+  <li><a href="">Spack Documentation</a></li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+      
+    </li>
+</ul>
+<hr/>
+
+          
+  <div class="section" id="spack-documentation">
+<h1>Spack Documentation<a class="headerlink" href="#spack-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Spack is a package management tool designed to support multiple
+versions and configurations of software on a wide variety of platforms
+and environments.  It was designed for large supercomputing centers,
+where many users and application teams share common installations of
+software on clusters with exotic architectures, using libraries that
+do not have a standard ABI.  Spack is non-destructive: installing a
+new version does not break existing installations, so many
+configurations can coexist on the same system.</p>
+<p>Most importantly, Spack is <em>simple</em>.  It offers a simple <em>spec</em> syntax
+so that users can specify versions and configuration options
+concisely.  Spack is also simple for package authors: package files
+are writtin in pure Python, and specs allow package authors to write a
+single build script for many different builds of the same package.</p>
+<p>See the <a class="reference internal" href="features.html"><em>Feature Overview</em></a> for examples and highlights.</p>
+<p>Get spack from the <a class="reference external" href="https://github.com/scalability-llnl/spack">github repository</a> and install your first
+package:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/scalability-llnl/spack.git
+<span class="nv">$ </span><span class="nb">cd </span>spack/bin
+<span class="nv">$ </span>./spack install libelf
+</pre></div>
+</div>
+<p>If you&#8217;re new to spack and want to start using it, see <a class="reference internal" href="getting_started.html"><em>Getting Started</em></a>,
+or refer to the full manual below.</p>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spack.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="features.html" class="btn btn-neutral float-right" title="Feature Overview"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+    &copy; Copyright 2013-2014,
+    <a href="https://scalability.llnl.gov/">Lawrence Livermore National Laboratory</a>.
+    <br/>
+    Written by Todd Gamblin, <a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>, LLNL-CODE-647188
+    <br/>
+    Last updated on Oct 08, 2014.
+  &nbsp;&nbsp;
+  <br/><a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

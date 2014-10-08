@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spack.cmd package &mdash; Spack 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'1.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Spack 1.0 documentation" href="index.html"/>
+        <link rel="up" title="spack package" href="spack.html"/>
+        <link rel="next" title="spack.compilers package" href="spack.compilers.html"/>
+        <link rel="prev" title="spack package" href="spack.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Spack</a>
+        <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="spack.html">API Docs</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">spack.cmd package</a></li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="_sources/spack.cmd.txt" rel="nofollow"> View page source</a>
+      
+    </li>
+</ul>
+<hr/>
+
+          
+  <div class="section" id="spack-cmd-package">
+<h1>spack.cmd package<a class="headerlink" href="#spack-cmd-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-spack.cmd.arch">
+<span id="spack-cmd-arch-module"></span><h2>spack.cmd.arch module<a class="headerlink" href="#module-spack.cmd.arch" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.arch.arch">
+<tt class="descclassname">spack.cmd.arch.</tt><tt class="descname">arch</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.arch.arch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.bootstrap">
+<span id="spack-cmd-bootstrap-module"></span><h2>spack.cmd.bootstrap module<a class="headerlink" href="#module-spack.cmd.bootstrap" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.bootstrap.bootstrap">
+<tt class="descclassname">spack.cmd.bootstrap.</tt><tt class="descname">bootstrap</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.bootstrap.bootstrap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.bootstrap.get_origin_url">
+<tt class="descclassname">spack.cmd.bootstrap.</tt><tt class="descname">get_origin_url</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.cmd.bootstrap.get_origin_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.bootstrap.setup_parser">
+<tt class="descclassname">spack.cmd.bootstrap.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.bootstrap.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.cd">
+<span id="spack-cmd-cd-module"></span><h2>spack.cmd.cd module<a class="headerlink" href="#module-spack.cmd.cd" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.cd.cd">
+<tt class="descclassname">spack.cmd.cd.</tt><tt class="descname">cd</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.cd.cd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.cd.setup_parser">
+<tt class="descclassname">spack.cmd.cd.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.cd.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is for decoration &#8211; spack cd is used through spack&#8217;s
+shell support.  This allows spack cd to print a descriptive
+help message when called with -h.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.checksum">
+<span id="spack-cmd-checksum-module"></span><h2>spack.cmd.checksum module<a class="headerlink" href="#module-spack.cmd.checksum" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.checksum.checksum">
+<tt class="descclassname">spack.cmd.checksum.</tt><tt class="descname">checksum</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.checksum.checksum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.checksum.get_checksums">
+<tt class="descclassname">spack.cmd.checksum.</tt><tt class="descname">get_checksums</tt><big>(</big><em>versions</em>, <em>urls</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#spack.cmd.checksum.get_checksums" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.checksum.setup_parser">
+<tt class="descclassname">spack.cmd.checksum.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.checksum.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.clean">
+<span id="spack-cmd-clean-module"></span><h2>spack.cmd.clean module<a class="headerlink" href="#module-spack.cmd.clean" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.clean.clean">
+<tt class="descclassname">spack.cmd.clean.</tt><tt class="descname">clean</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.clean.clean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.clean.setup_parser">
+<tt class="descclassname">spack.cmd.clean.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.clean.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.compiler">
+<span id="spack-cmd-compiler-module"></span><h2>spack.cmd.compiler module<a class="headerlink" href="#module-spack.cmd.compiler" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.compiler.compiler">
+<tt class="descclassname">spack.cmd.compiler.</tt><tt class="descname">compiler</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.compiler.compiler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.compiler.compiler_add">
+<tt class="descclassname">spack.cmd.compiler.</tt><tt class="descname">compiler_add</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.compiler.compiler_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search either $PATH or a list of paths for compilers and add them
+to Spack&#8217;s configuration.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.compiler.compiler_info">
+<tt class="descclassname">spack.cmd.compiler.</tt><tt class="descname">compiler_info</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.compiler.compiler_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print info about all compilers matching a spec.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.compiler.compiler_list">
+<tt class="descclassname">spack.cmd.compiler.</tt><tt class="descname">compiler_list</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.compiler.compiler_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.compiler.compiler_remove">
+<tt class="descclassname">spack.cmd.compiler.</tt><tt class="descname">compiler_remove</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.compiler.compiler_remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.compiler.setup_parser">
+<tt class="descclassname">spack.cmd.compiler.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.compiler.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.compilers">
+<span id="spack-cmd-compilers-module"></span><h2>spack.cmd.compilers module<a class="headerlink" href="#module-spack.cmd.compilers" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.compilers.compilers">
+<tt class="descclassname">spack.cmd.compilers.</tt><tt class="descname">compilers</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.compilers.compilers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.config">
+<span id="spack-cmd-config-module"></span><h2>spack.cmd.config module<a class="headerlink" href="#module-spack.cmd.config" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.config.config">
+<tt class="descclassname">spack.cmd.config.</tt><tt class="descname">config</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.config.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.config.config_edit">
+<tt class="descclassname">spack.cmd.config.</tt><tt class="descname">config_edit</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.config.config_edit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.config.config_get">
+<tt class="descclassname">spack.cmd.config.</tt><tt class="descname">config_get</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.config.config_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.config.config_set">
+<tt class="descclassname">spack.cmd.config.</tt><tt class="descname">config_set</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.config.config_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.config.setup_parser">
+<tt class="descclassname">spack.cmd.config.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.config.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.create">
+<span id="spack-cmd-create-module"></span><h2>spack.cmd.create module<a class="headerlink" href="#module-spack.cmd.create" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.cmd.create.ConfigureGuesser">
+<em class="property">class </em><tt class="descclassname">spack.cmd.create.</tt><tt class="descname">ConfigureGuesser</tt><a class="headerlink" href="#spack.cmd.create.ConfigureGuesser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.create.create">
+<tt class="descclassname">spack.cmd.create.</tt><tt class="descname">create</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.create.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.create.make_version_calls">
+<tt class="descclassname">spack.cmd.create.</tt><tt class="descname">make_version_calls</tt><big>(</big><em>ver_hash_tuples</em><big>)</big><a class="headerlink" href="#spack.cmd.create.make_version_calls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a version() call to the package for each version found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.create.setup_parser">
+<tt class="descclassname">spack.cmd.create.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.create.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.dependents">
+<span id="spack-cmd-dependents-module"></span><h2>spack.cmd.dependents module<a class="headerlink" href="#module-spack.cmd.dependents" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.dependents.dependents">
+<tt class="descclassname">spack.cmd.dependents.</tt><tt class="descname">dependents</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.dependents.dependents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.dependents.setup_parser">
+<tt class="descclassname">spack.cmd.dependents.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.dependents.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.doc">
+<span id="spack-cmd-doc-module"></span><h2>spack.cmd.doc module<a class="headerlink" href="#module-spack.cmd.doc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.doc.doc">
+<tt class="descclassname">spack.cmd.doc.</tt><tt class="descname">doc</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.doc.doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.doc.setup_parser">
+<tt class="descclassname">spack.cmd.doc.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.doc.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.edit">
+<span id="spack-cmd-edit-module"></span><h2>spack.cmd.edit module<a class="headerlink" href="#module-spack.cmd.edit" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.edit.edit">
+<tt class="descclassname">spack.cmd.edit.</tt><tt class="descname">edit</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.edit.edit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.edit.setup_parser">
+<tt class="descclassname">spack.cmd.edit.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.edit.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.fetch">
+<span id="spack-cmd-fetch-module"></span><h2>spack.cmd.fetch module<a class="headerlink" href="#module-spack.cmd.fetch" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.fetch.fetch">
+<tt class="descclassname">spack.cmd.fetch.</tt><tt class="descname">fetch</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.fetch.fetch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.fetch.setup_parser">
+<tt class="descclassname">spack.cmd.fetch.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.fetch.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.find">
+<span id="spack-cmd-find-module"></span><h2>spack.cmd.find module<a class="headerlink" href="#module-spack.cmd.find" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.find.find">
+<tt class="descclassname">spack.cmd.find.</tt><tt class="descname">find</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.find.find" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.find.setup_parser">
+<tt class="descclassname">spack.cmd.find.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.find.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.graph">
+<span id="spack-cmd-graph-module"></span><h2>spack.cmd.graph module<a class="headerlink" href="#module-spack.cmd.graph" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.graph.graph">
+<tt class="descclassname">spack.cmd.graph.</tt><tt class="descname">graph</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.graph.graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.help">
+<span id="spack-cmd-help-module"></span><h2>spack.cmd.help module<a class="headerlink" href="#module-spack.cmd.help" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.help.help">
+<tt class="descclassname">spack.cmd.help.</tt><tt class="descname">help</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.help.help" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.help.setup_parser">
+<tt class="descclassname">spack.cmd.help.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.help.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.info">
+<span id="spack-cmd-info-module"></span><h2>spack.cmd.info module<a class="headerlink" href="#module-spack.cmd.info" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.info.format_doc">
+<tt class="descclassname">spack.cmd.info.</tt><tt class="descname">format_doc</tt><big>(</big><em>pkg</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#spack.cmd.info.format_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap doc string at 72 characters and format nicely</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.info.github_url">
+<tt class="descclassname">spack.cmd.info.</tt><tt class="descname">github_url</tt><big>(</big><em>pkg</em><big>)</big><a class="headerlink" href="#spack.cmd.info.github_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link to a package file on github.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.info.info">
+<tt class="descclassname">spack.cmd.info.</tt><tt class="descname">info</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.info.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.info.info_rst">
+<tt class="descclassname">spack.cmd.info.</tt><tt class="descname">info_rst</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.cmd.info.info_rst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out information on all packages in restructured text.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.info.info_text">
+<tt class="descclassname">spack.cmd.info.</tt><tt class="descname">info_text</tt><big>(</big><em>pkg</em><big>)</big><a class="headerlink" href="#spack.cmd.info.info_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out a plain text description of a package.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.info.rst_table">
+<tt class="descclassname">spack.cmd.info.</tt><tt class="descname">rst_table</tt><big>(</big><em>elts</em><big>)</big><a class="headerlink" href="#spack.cmd.info.rst_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out a RST-style table.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.info.setup_parser">
+<tt class="descclassname">spack.cmd.info.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.info.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.install">
+<span id="spack-cmd-install-module"></span><h2>spack.cmd.install module<a class="headerlink" href="#module-spack.cmd.install" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.install.install">
+<tt class="descclassname">spack.cmd.install.</tt><tt class="descname">install</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.install.install" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.install.setup_parser">
+<tt class="descclassname">spack.cmd.install.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.install.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.list">
+<span id="spack-cmd-list-module"></span><h2>spack.cmd.list module<a class="headerlink" href="#module-spack.cmd.list" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.list.list">
+<tt class="descclassname">spack.cmd.list.</tt><tt class="descname">list</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.list.list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.list.setup_parser">
+<tt class="descclassname">spack.cmd.list.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.list.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.load">
+<span id="spack-cmd-load-module"></span><h2>spack.cmd.load module<a class="headerlink" href="#module-spack.cmd.load" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.load.load">
+<tt class="descclassname">spack.cmd.load.</tt><tt class="descname">load</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.load.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.load.setup_parser">
+<tt class="descclassname">spack.cmd.load.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.load.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parser is only constructed so that this prints a nice help
+message with -h.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.location">
+<span id="spack-cmd-location-module"></span><h2>spack.cmd.location module<a class="headerlink" href="#module-spack.cmd.location" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.location.location">
+<tt class="descclassname">spack.cmd.location.</tt><tt class="descname">location</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.location.location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.location.setup_parser">
+<tt class="descclassname">spack.cmd.location.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.location.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.mirror">
+<span id="spack-cmd-mirror-module"></span><h2>spack.cmd.mirror module<a class="headerlink" href="#module-spack.cmd.mirror" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.mirror.mirror">
+<tt class="descclassname">spack.cmd.mirror.</tt><tt class="descname">mirror</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.mirror.mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.mirror.mirror_add">
+<tt class="descclassname">spack.cmd.mirror.</tt><tt class="descname">mirror_add</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.mirror.mirror_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a mirror to Spack.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.mirror.mirror_create">
+<tt class="descclassname">spack.cmd.mirror.</tt><tt class="descname">mirror_create</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.mirror.mirror_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a directory to be used as a spack mirror, and fill it with
+package archives.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.mirror.mirror_list">
+<tt class="descclassname">spack.cmd.mirror.</tt><tt class="descname">mirror_list</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.mirror.mirror_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print out available mirrors to the console.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.mirror.mirror_remove">
+<tt class="descclassname">spack.cmd.mirror.</tt><tt class="descname">mirror_remove</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.mirror.mirror_remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a mirror by name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.mirror.setup_parser">
+<tt class="descclassname">spack.cmd.mirror.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.mirror.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.module">
+<span id="spack-cmd-module-module"></span><h2>spack.cmd.module module<a class="headerlink" href="#module-spack.cmd.module" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.module.module">
+<tt class="descclassname">spack.cmd.module.</tt><tt class="descname">module</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.module.module" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.module.module_find">
+<tt class="descclassname">spack.cmd.module.</tt><tt class="descname">module_find</tt><big>(</big><em>mtype</em>, <em>spec_array</em><big>)</big><a class="headerlink" href="#spack.cmd.module.module_find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Look at all installed packages and see if the spec provided
+matches any.  If it does, check whether there is a module file
+of type &lt;mtype&gt; there, and print out the name that the user
+should type to use that package&#8217;s module.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.module.module_refresh">
+<tt class="descclassname">spack.cmd.module.</tt><tt class="descname">module_refresh</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.cmd.module.module_refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regenerate all module files for installed packages known to
+spack (some packages may no longer exist).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.module.setup_parser">
+<tt class="descclassname">spack.cmd.module.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.module.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.patch">
+<span id="spack-cmd-patch-module"></span><h2>spack.cmd.patch module<a class="headerlink" href="#module-spack.cmd.patch" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.patch.patch">
+<tt class="descclassname">spack.cmd.patch.</tt><tt class="descname">patch</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.patch.patch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.patch.setup_parser">
+<tt class="descclassname">spack.cmd.patch.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.patch.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.pkg">
+<span id="spack-cmd-pkg-module"></span><h2>spack.cmd.pkg module<a class="headerlink" href="#module-spack.cmd.pkg" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.pkg.diff_packages">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">diff_packages</tt><big>(</big><em>rev1</em>, <em>rev2</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.diff_packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.get_git">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">get_git</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.cmd.pkg.get_git" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.list_packages">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">list_packages</tt><big>(</big><em>rev</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.list_packages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.pkg">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">pkg</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.pkg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.pkg_added">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">pkg_added</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.pkg_added" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show packages added since a commit.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.pkg_diff">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">pkg_diff</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.pkg_diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare packages available in two different git revisions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.pkg_list">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">pkg_list</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.pkg_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List packages associated with a particular spack git revision.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.pkg_removed">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">pkg_removed</tt><big>(</big><em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.pkg_removed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show packages removed since a commit.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.pkg.setup_parser">
+<tt class="descclassname">spack.cmd.pkg.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.pkg.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.providers">
+<span id="spack-cmd-providers-module"></span><h2>spack.cmd.providers module<a class="headerlink" href="#module-spack.cmd.providers" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.providers.providers">
+<tt class="descclassname">spack.cmd.providers.</tt><tt class="descname">providers</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.providers.providers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.providers.setup_parser">
+<tt class="descclassname">spack.cmd.providers.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.providers.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.purge">
+<span id="spack-cmd-purge-module"></span><h2>spack.cmd.purge module<a class="headerlink" href="#module-spack.cmd.purge" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.purge.purge">
+<tt class="descclassname">spack.cmd.purge.</tt><tt class="descname">purge</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.purge.purge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.python">
+<span id="spack-cmd-python-module"></span><h2>spack.cmd.python module<a class="headerlink" href="#module-spack.cmd.python" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.python.python">
+<tt class="descclassname">spack.cmd.python.</tt><tt class="descname">python</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.python.python" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.python.setup_parser">
+<tt class="descclassname">spack.cmd.python.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.python.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.spec">
+<span id="spack-cmd-spec-module"></span><h2>spack.cmd.spec module<a class="headerlink" href="#module-spack.cmd.spec" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.spec.setup_parser">
+<tt class="descclassname">spack.cmd.spec.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.spec.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.spec.spec">
+<tt class="descclassname">spack.cmd.spec.</tt><tt class="descname">spec</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.spec.spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.stage">
+<span id="spack-cmd-stage-module"></span><h2>spack.cmd.stage module<a class="headerlink" href="#module-spack.cmd.stage" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.stage.setup_parser">
+<tt class="descclassname">spack.cmd.stage.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.stage.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.stage.stage">
+<tt class="descclassname">spack.cmd.stage.</tt><tt class="descname">stage</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.stage.stage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.test">
+<span id="spack-cmd-test-module"></span><h2>spack.cmd.test module<a class="headerlink" href="#module-spack.cmd.test" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.test.setup_parser">
+<tt class="descclassname">spack.cmd.test.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.test.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.test.test">
+<tt class="descclassname">spack.cmd.test.</tt><tt class="descname">test</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.test.test" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.uninstall">
+<span id="spack-cmd-uninstall-module"></span><h2>spack.cmd.uninstall module<a class="headerlink" href="#module-spack.cmd.uninstall" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.uninstall.setup_parser">
+<tt class="descclassname">spack.cmd.uninstall.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.uninstall.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.uninstall.uninstall">
+<tt class="descclassname">spack.cmd.uninstall.</tt><tt class="descname">uninstall</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.uninstall.uninstall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.unload">
+<span id="spack-cmd-unload-module"></span><h2>spack.cmd.unload module<a class="headerlink" href="#module-spack.cmd.unload" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.unload.setup_parser">
+<tt class="descclassname">spack.cmd.unload.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.unload.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parser is only constructed so that this prints a nice help
+message with -h.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.unload.unload">
+<tt class="descclassname">spack.cmd.unload.</tt><tt class="descname">unload</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.unload.unload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.unuse">
+<span id="spack-cmd-unuse-module"></span><h2>spack.cmd.unuse module<a class="headerlink" href="#module-spack.cmd.unuse" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.unuse.setup_parser">
+<tt class="descclassname">spack.cmd.unuse.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.unuse.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parser is only constructed so that this prints a nice help
+message with -h.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.unuse.unuse">
+<tt class="descclassname">spack.cmd.unuse.</tt><tt class="descname">unuse</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.unuse.unuse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.use">
+<span id="spack-cmd-use-module"></span><h2>spack.cmd.use module<a class="headerlink" href="#module-spack.cmd.use" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.use.setup_parser">
+<tt class="descclassname">spack.cmd.use.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.use.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parser is only constructed so that this prints a nice help
+message with -h.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.use.use">
+<tt class="descclassname">spack.cmd.use.</tt><tt class="descname">use</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.use.use" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd.versions">
+<span id="spack-cmd-versions-module"></span><h2>spack.cmd.versions module<a class="headerlink" href="#module-spack.cmd.versions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.versions.setup_parser">
+<tt class="descclassname">spack.cmd.versions.</tt><tt class="descname">setup_parser</tt><big>(</big><em>subparser</em><big>)</big><a class="headerlink" href="#spack.cmd.versions.setup_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.versions.versions">
+<tt class="descclassname">spack.cmd.versions.</tt><tt class="descname">versions</tt><big>(</big><em>parser</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.cmd.versions.versions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spack.cmd">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spack.cmd" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.cmd.elide_list">
+<tt class="descclassname">spack.cmd.</tt><tt class="descname">elide_list</tt><big>(</big><em>line_list</em>, <em>max_num=10</em><big>)</big><a class="headerlink" href="#spack.cmd.elide_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a long list and limits it to a smaller number of elements,
+replacing intervening elements with &#8216;...&#8217;.  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">elide_list</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>gives:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;...&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.get_cmd_function_name">
+<tt class="descclassname">spack.cmd.</tt><tt class="descname">get_cmd_function_name</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#spack.cmd.get_cmd_function_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.get_command">
+<tt class="descclassname">spack.cmd.</tt><tt class="descname">get_command</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#spack.cmd.get_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports the command&#8217;s function from a module and returns it.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.get_module">
+<tt class="descclassname">spack.cmd.</tt><tt class="descname">get_module</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#spack.cmd.get_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports the module for a particular command name and returns it.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.cmd.parse_specs">
+<tt class="descclassname">spack.cmd.</tt><tt class="descname">parse_specs</tt><big>(</big><em>args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#spack.cmd.parse_specs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function for parsing arguments from specs.  Handles common
+exceptions and dies if there are errors.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="spack.compilers.html" class="btn btn-neutral float-right" title="spack.compilers package"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="spack.html" class="btn btn-neutral" title="spack package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+    &copy; Copyright 2013-2014,
+    <a href="https://scalability.llnl.gov/">Lawrence Livermore National Laboratory</a>.
+    <br/>
+    Written by Todd Gamblin, <a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>, LLNL-CODE-647188
+    <br/>
+    Last updated on Oct 08, 2014.
+  &nbsp;&nbsp;
+  <br/><a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

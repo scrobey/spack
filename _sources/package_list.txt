@@ -1,0 +1,1158 @@
+Package List
+==================
+This is a list of things you can install using Spack.  It is
+automatically generated based on the packages in the latest Spack
+release.
+
+Spack currently has 56 mainline packages:
+
+=============== ============== ============ =================== ============
+`adept-utils`_  `hwloc`_       `lwgrp`_     `papi`_             `sundials`_
+`automaded`_    `launchmon`_   `mpich`_     `paraver`_          `swig`_
+`boost`_        `libarchive`_  `mpileaks`_  `parmetis`_         `tau`_
+`callpath`_     `libcircle`_   `mrnet`_     `pmgr_collective`_  `tmux`_
+`clang`_        `libdwarf`_    `mvapich2`_  `postgresql`_       `vim`_
+`cmake`_        `libelf`_      `ncurses`_   `SAMRAI`_           `wx`_
+`cube`_         `libevent`_    `netgauge`_  `scalasca`_         `wxpropgrid`_
+`dtcmp`_        `libmonitor`_  `ompss`_     `scorep`_           `zlib`_
+`dyninst`_      `libNBC`_      `opari2`_    `scr`_              
+`extrae`_       `libunwind`_   `openmpi`_   `spindle`_          
+`graphlib`_     `llvm`_        `openssl`_   `sqlite`_           
+`hdf5`_         `llvm-lld`_    `otf2`_      `stat`_             
+=============== ============== ============ =================== ============
+
+-----
+
+.. _adept-utils:
+
+adept-utils
+-----------
+Links
+    * `Homepage <https://github.com/scalability-llnl/adept-utils>`__
+    * `adept-utils/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/adept-utils/package.py>`__
+
+Versions:
+  1.0
+Dependencies
+  `boost`_, mpi
+
+Description
+  Utility libraries for LLNL performance tools.
+
+
+-----
+
+.. _automaded:
+
+automaded
+---------
+Links
+    * `Homepage <https://github.com/scalability-llnl/AutomaDeD>`__
+    * `automaded/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/automaded/package.py>`__
+
+Versions:
+  1.0
+Dependencies
+  `boost`_, `callpath`_, mpi
+
+Description
+  AutomaDeD (Automata-based Debugging for Dissimilar parallel tasks) is a
+  tool for automatic diagnosis of performance and correctness problems in
+  MPI applications. It creates control-flow models of each MPI process
+  and, when a failure occurs, these models are leveraged to find the
+  origin of problems automatically. MPI calls are intercepted (using
+  wrappers) to create the models. When an MPI application hangs, AutomaDeD
+  creates a progress-dependence graph that helps finding the process (or
+  group of processes) that caused the hang.
+
+
+-----
+
+.. _boost:
+
+boost
+-----
+Links
+    * `Homepage <http://www.boost.org>`__
+    * `boost/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/boost/package.py>`__
+
+Versions:
+  1.55.0, 1.54.0, 1.53.0, 1.52.0, 1.51.0, 1.50.0, 1.49.0, 1.48.0, 1.47.0, 1.46.1, 1.46.0, 1.45.0, 1.44.0, 1.43.0, 1.42.0, 1.41.0, 1.40.0, 1.39.0, 1.38.0, 1.37.0, 1.36.0, 1.35.0, 1.34.1, 1.34.0
+Description
+  Boost provides free peer-reviewed portable C++ source libraries,
+  emphasizing libraries that work well with the C++ Standard Library.
+  Boost libraries are intended to be widely useful, and usable across a
+  broad spectrum of applications. The Boost license encourages both
+  commercial and non-commercial use.
+
+
+-----
+
+.. _callpath:
+
+callpath
+--------
+Links
+    * `Homepage <https://github.com/scalability-llnl/callpath>`__
+    * `callpath/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/callpath/package.py>`__
+
+Versions:
+  1.0.2, 1.0.1
+Dependencies
+  `dyninst`_, mpi, `adept-utils`_
+
+Description
+  Library for representing callpaths consistently in distributed-memory
+  performance tools.
+
+
+-----
+
+.. _clang:
+
+clang
+-----
+Links
+    * `Homepage <http://clang.llvm.org>`__
+    * `clang/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/clang/package.py>`__
+
+Versions:
+  3.4.2
+Dependencies
+  `llvm`_
+
+Description
+  The goal of the Clang project is to create a new C, C++, Objective C and
+  Objective C++ front-end for the LLVM compiler.
+
+
+-----
+
+.. _cmake:
+
+cmake
+-----
+Links
+    * `Homepage <https://www.cmake.org>`__
+    * `cmake/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cmake/package.py>`__
+
+Versions:
+  2.8.10.2
+Description
+  A cross-platform, open-source build system. CMake is a family of tools
+  designed to build, test and package software.
+
+
+-----
+
+.. _cube:
+
+cube
+----
+Links
+    * `Homepage <http://www.scalasca.org/software/cube-4.x/download.html>`__
+    * `cube/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cube/package.py>`__
+
+Versions:
+  4.3TP1, 4.2.3
+Description
+  Cube the profile viewer for Score-P and Scalasca profiles. It displays a
+  multi-dimensional performance space consisting of the dimensions (i)
+  performance metric, (ii) call path, and (iii) system resource.
+
+
+-----
+
+.. _dtcmp:
+
+dtcmp
+-----
+Links
+    * `Homepage <https://github.com/hpc/dtcmp>`__
+    * `dtcmp/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dtcmp/package.py>`__
+
+Versions:
+  1.0.3
+Dependencies
+  `lwgrp`_, mpi
+
+Description
+  The Datatype Comparison Library provides comparison operations and
+  parallel sort algorithms for MPI applications.
+
+
+-----
+
+.. _dyninst:
+
+dyninst
+-------
+Links
+    * `Homepage <https://paradyn.org>`__
+    * `dyninst/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dyninst/package.py>`__
+
+Versions:
+  8.1.2, 8.1.1
+Dependencies
+  `boost`_, `libelf`_, `libdwarf`_
+
+Description
+  API for dynamic binary instrumentation. Modify programs while they are
+  executing without recompiling, re-linking, or re-executing.
+
+
+-----
+
+.. _extrae:
+
+extrae
+------
+Links
+    * `Homepage <http://www.bsc.es/computer-sciences/extrae>`__
+    * `extrae/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/extrae/package.py>`__
+
+Versions:
+  2.5.1
+Dependencies
+  `papi`_, `dyninst`_, `openmpi`_, `libunwind`_, `boost`_, `libdwarf`_
+
+Description
+  Extrae is the package devoted to generate tracefiles which can be
+  analyzed later by Paraver. Extrae is a tool that uses different
+  interposition mechanisms to inject probes into the target application so
+  as to gather information regarding the application performance. The
+  Extrae instrumentation package can instrument the MPI programin model,
+  and the following parallel programming models either alone or in
+  conjunction with MPI : OpenMP, CUDA, OpenCL, pthread, OmpSs
+
+
+-----
+
+.. _graphlib:
+
+graphlib
+--------
+Links
+    * `Homepage <http://https://github.com/lee218llnl/graphlib>`__
+    * `graphlib/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/graphlib/package.py>`__
+
+Versions:
+  2.0.0
+Description
+  Library to create, manipulate, and export graphs Graphlib.
+
+
+-----
+
+.. _hdf5:
+
+hdf5
+----
+Links
+    * `Homepage <http://www.hdfgroup.org/HDF5/>`__
+    * `hdf5/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/hdf5/package.py>`__
+
+Versions:
+  1.8.13
+Dependencies
+  `zlib`_, mpi
+
+Description
+  HDF5 is a data model, library, and file format for storing and managing
+  data. It supports an unlimited variety of datatypes, and is designed for
+  flexible and efficient I/O and for high volume and complex data.
+
+
+-----
+
+.. _hwloc:
+
+hwloc
+-----
+Links
+    * `Homepage <http://www.open-mpi.org/projects/hwloc/>`__
+    * `hwloc/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/hwloc/package.py>`__
+
+Versions:
+  1.9
+Description
+  The Portable Hardware Locality (hwloc) software package provides a
+  portable abstraction (across OS, versions, architectures, ...) of the
+  hierarchical topology of modern architectures, including NUMA memory
+  nodes, sockets, shared caches, cores and simultaneous multithreading. It
+  also gathers various system attributes such as cache and memory
+  information as well as the locality of I/O devices such as network
+  interfaces, InfiniBand HCAs or GPUs. It primarily aims at helping
+  applications with gathering information about modern computing hardware
+  so as to exploit it accordingly and efficiently.
+
+
+-----
+
+.. _launchmon:
+
+launchmon
+---------
+Links
+    * `Homepage <http://sourceforge.net/projects/launchmon>`__
+    * `launchmon/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/launchmon/package.py>`__
+
+Versions:
+  1.0.1
+Description
+  Software infrastructure that enables HPC run-time tools to co-locate
+  tool daemons with a parallel job.
+
+
+-----
+
+.. _libarchive:
+
+libarchive
+----------
+Links
+    * `Homepage <http://www.libarchive.org>`__
+    * `libarchive/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libarchive/package.py>`__
+
+Versions:
+  3.1.2, 3.1.1, 3.1.0
+Description
+  libarchive: C library and command-line tools for reading and writing
+  tar, cpio, zip, ISO, and other archive formats.
+
+
+-----
+
+.. _libcircle:
+
+libcircle
+---------
+Links
+    * `Homepage <https://github.com/hpc/libcircle>`__
+    * `libcircle/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libcircle/package.py>`__
+
+Versions:
+  0.2.1-rc.1
+Dependencies
+  mpi
+
+Description
+  libcircle provides an efficient distributed queue on a cluster, using
+  self-stabilizing work stealing.
+
+
+-----
+
+.. _libdwarf:
+
+libdwarf
+--------
+Links
+    * `Homepage <http://www.prevanders.net/dwarf.html>`__
+    * `libdwarf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libdwarf/package.py>`__
+
+Versions:
+  20130729, 20130207, 20130126
+Dependencies
+  `libelf`_
+
+Description
+  The DWARF Debugging Information Format is of interest to programmers
+  working on compilers and debuggers (and any one interested in reading or
+  writing DWARF information). It was developed by a committee (known as
+  the PLSIG at the time) starting around 1991. Starting around 1991 SGI
+  developed the libdwarf and dwarfdump tools for internal use and as part
+  of SGI IRIX developer tools. Since that time dwarfdump and libdwarf have
+  been shipped (as an executable and archive respectively, not source)
+  with every release of the SGI MIPS/IRIX C compiler.
+
+
+-----
+
+.. _libelf:
+
+libelf
+------
+Links
+    * `Homepage <http://www.mr511.de/software/english.html>`__
+    * `libelf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libelf/package.py>`__
+
+Versions:
+  0.8.13, 0.8.12
+Description
+  libelf lets you read, modify or create ELF object files in an
+  architecture-independent way. The library takes care of size and endian
+  issues, e.g. you can process a file for SPARC processors on an Intel-
+  based system.
+
+
+-----
+
+.. _libevent:
+
+libevent
+--------
+Links
+    * `Homepage <http://libevent.org>`__
+    * `libevent/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libevent/package.py>`__
+
+Versions:
+  2.0.21, 2.0.20, 2.0.19, 2.0.18, 2.0.17, 2.0.16, 2.0.15, 2.0.14, 2.0.13, 2.0.12
+Description
+  The libevent API provides a mechanism to execute a callback function
+  when a specific event occurs on a file descriptor or after a timeout has
+  been reached. Furthermore, libevent also support callbacks due to
+  signals or regular timeouts.
+
+
+-----
+
+.. _libmonitor:
+
+libmonitor
+----------
+Links
+    * `Homepage <http://hpctoolkit.org>`__
+    * `libmonitor/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libmonitor/package.py>`__
+
+Versions:
+  20130218
+Description
+  Libmonitor is a library for process and thread control.
+
+
+-----
+
+.. _libNBC:
+
+libNBC
+------
+Links
+    * `Homepage <http://unixer.de/research/nbcoll/libnbc/>`__
+    * `libNBC/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libNBC/package.py>`__
+
+Versions:
+  1.1.1
+Dependencies
+  mpi
+
+Description
+  LibNBC is a prototypic implementation of a nonblocking interface for MPI
+  collective operations. Based on ANSI C and MPI-1, it supports all MPI-1
+  collective operations in a nonblocking manner. LibNBC is distributed
+  under the BSD license.
+
+
+-----
+
+.. _libunwind:
+
+libunwind
+---------
+Links
+    * `Homepage <http://www.nongnu.org/libunwind/>`__
+    * `libunwind/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libunwind/package.py>`__
+
+Versions:
+  1.1
+Description
+  A portable and efficient C programming interface (API) to determine the
+  call-chain of a program.
+
+
+-----
+
+.. _llvm:
+
+llvm
+----
+Links
+    * `Homepage <http://llvm.org/>`__
+    * `llvm/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/llvm/package.py>`__
+
+Versions:
+  3.4.2
+Description
+  The LLVM Project is a collection of modular and reusable compiler and
+  toolchain technologies. Despite its name, LLVM has little to do with
+  traditional virtual machines, though it does provide helpful libraries
+  that can be used to build them. The name "LLVM" itself is not an
+  acronym; it is the full name of the project.
+
+
+-----
+
+.. _llvm-lld:
+
+llvm-lld
+--------
+Links
+    * `Homepage <http://lld.llvm.org>`__
+    * `llvm-lld/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/llvm-lld/package.py>`__
+
+Versions:
+  3.4
+Dependencies
+  `llvm`_
+
+Description
+  lld - The LLVM Linker lld is a new set of modular code for creating
+  linker tools.
+
+
+-----
+
+.. _lwgrp:
+
+lwgrp
+-----
+Links
+    * `Homepage <https://github.com/hpc/lwgrp>`__
+    * `lwgrp/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/lwgrp/package.py>`__
+
+Versions:
+  1.0.2
+Dependencies
+  mpi
+
+Description
+  Thie light-weight group library provides process group representations
+  using O(log N) space and time.
+
+
+-----
+
+.. _mpich:
+
+mpich
+-----
+Links
+    * `Homepage <http://www.mpich.org>`__
+    * `mpich/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpich/package.py>`__
+
+Versions:
+  3.0.4
+Description
+  MPICH is a high performance and widely portable implementation of the
+  Message Passing Interface (MPI) standard.
+
+
+-----
+
+.. _mpileaks:
+
+mpileaks
+--------
+Links
+    * `Homepage <https://github.com/hpc/mpileaks>`__
+    * `mpileaks/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpileaks/package.py>`__
+
+Versions:
+  1.0
+Dependencies
+  `adept-utils`_, `callpath`_, mpi
+
+Description
+  Tool to detect and report leaked MPI objects like MPI_Requests and
+  MPI_Datatypes.
+
+
+-----
+
+.. _mrnet:
+
+mrnet
+-----
+Links
+    * `Homepage <http://paradyn.org/mrnet>`__
+    * `mrnet/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mrnet/package.py>`__
+
+Versions:
+  4.1.0, 4.0.0
+Dependencies
+  `boost`_
+
+Description
+  The MRNet Multi-Cast Reduction Network.
+
+
+-----
+
+.. _mvapich2:
+
+mvapich2
+--------
+Links
+    * `Homepage <http://mvapich.cse.ohio-state.edu/>`__
+    * `mvapich2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mvapich2/package.py>`__
+
+Versions:
+  2.0, 1.9
+Description
+  mvapich2 is an MPI implmenetation for infiniband networks.
+
+
+-----
+
+.. _ncurses:
+
+ncurses
+-------
+Links
+    * `Homepage <http://invisible-island.net/ncurses/ncurses.html>`__
+    * `ncurses/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ncurses/package.py>`__
+
+Versions:
+  5.9
+Description
+  The ncurses (new curses) library is a free software emulation of curses
+  in System V Release 4.0, and more. It uses terminfo format, supports
+  pads and color and multiple highlights and forms characters and
+  function-key mapping, and has all the other SYSV-curses enhancements
+  over BSD curses.
+
+
+-----
+
+.. _netgauge:
+
+netgauge
+--------
+Links
+    * `Homepage <http://unixer.de/research/netgauge/>`__
+    * `netgauge/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/netgauge/package.py>`__
+
+Versions:
+  2.4.6
+Dependencies
+  mpi
+
+Description
+  Netgauge is a high-precision network parameter measurement tool. It
+  supports benchmarking of many different network protocols and
+  communication patterns. The main focus lies on accuracy, statistical
+  analysis and easy extensibility.
+
+
+-----
+
+.. _ompss:
+
+ompss
+-----
+Links
+    * `Homepage <http://pm.bsc.es/>`__
+    * `ompss/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ompss/package.py>`__
+
+Versions:
+  14.06
+Dependencies
+  `hwloc`_, `extrae`_, mpi
+
+Description
+  OmpSs is an effort to integrate features from the StarSs programming
+  model developed by BSC into a single programming model. In particular,
+  our objective is to extend OpenMP with new directives to support
+  asynchronous parallelism and heterogeneity (devices like GPUs). However,
+  it can also be understood as new directives extending other accelerator
+  based APIs like CUDA or OpenCL. Our OmpSs environment is built on top of
+  our Mercurium compiler and Nanos++ runtime system.
+
+
+-----
+
+.. _opari2:
+
+opari2
+------
+Links
+    * `Homepage <http://www.vi-hps.org/projects/score-p>`__
+    * `opari2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/opari2/package.py>`__
+
+Versions:
+  1.1.2
+Description
+  OPARI2 is a source-to-source instrumentation tool for OpenMP and hybrid
+  codes. It surrounds OpenMP directives and runtime library calls with
+  calls to the POMP2 measurement interface. OPARI2 will provide you with a
+  new initialization method that allows for multi-directory and parallel
+  builds as well as the usage of pre-instrumented libraries. Furthermore,
+  an efficient way of tracking parent-child relationships was added.
+  Additionally, we extended OPARI2 to support instrumentation of OpenMP
+  3.0 tied tasks.
+
+
+-----
+
+.. _openmpi:
+
+openmpi
+-------
+Links
+    * `Homepage <http://www.open-mpi.org>`__
+    * `openmpi/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/openmpi/package.py>`__
+
+Versions:
+  1.8.2, 1.6.5
+Description
+  Open MPI is a project combining technologies and resources from several
+  other projects (FT-MPI, LA-MPI, LAM/MPI, and PACX-MPI) in order to build
+  the best MPI library available. A completely new MPI-2 compliant
+  implementation, Open MPI offers advantages for system and software
+  vendors, application developers and computer science researchers.
+
+
+-----
+
+.. _openssl:
+
+openssl
+-------
+Links
+    * `Homepage <http://www.openssl.org>`__
+    * `openssl/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/openssl/package.py>`__
+
+Versions:
+  1.0.1h
+Dependencies
+  `zlib`_
+
+Description
+  The OpenSSL Project is a collaborative effort to develop a robust,
+  commercial-grade, full-featured, and Open Source toolkit implementing
+  the Secure Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS
+  v1) protocols as well as a full-strength general purpose cryptography
+  library.
+
+
+-----
+
+.. _otf2:
+
+otf2
+----
+Links
+    * `Homepage <http://www.vi-hps.org/score-p>`__
+    * `otf2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/otf2/package.py>`__
+
+Versions:
+  1.4, 1.3.1, 1.2.1
+Description
+  The Open Trace Format 2 is a highly scalable, memory efficient event
+  trace data format plus support library.
+
+
+-----
+
+.. _papi:
+
+papi
+----
+Links
+    * `Homepage <http://icl.cs.utk.edu/papi/index.html>`__
+    * `papi/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/papi/package.py>`__
+
+Versions:
+  5.3.0
+Description
+  PAPI provides the tool designer and application engineer with a
+  consistent interface and methodology for use of the performance counter
+  hardware found in most major microprocessors. PAPI enables software
+  engineers to see, in near real time, the relation between software
+  performance and processor events. In addition Component PAPI provides
+  access to a collection of components that expose performance measurement
+  opportunites across the hardware and software stack.
+
+
+-----
+
+.. _paraver:
+
+paraver
+-------
+Links
+    * `Homepage <http://www.bsc.es/computer-sciences/performance-tools/paraver>`__
+    * `paraver/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/paraver/package.py>`__
+
+Versions:
+  4.5.2
+Dependencies
+  `wxpropgrid`_, `boost`_, `wx`_
+
+Description
+  "A very powerful performance visualization and analysis tool based on
+  traces that can be used to analyse any information that is expressed on
+  its input trace format. Traces for parallel MPI, OpenMP and other
+  programs can be genereated with Extrae.
+
+
+-----
+
+.. _parmetis:
+
+parmetis
+--------
+Links
+    * `Homepage <http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview>`__
+    * `parmetis/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/parmetis/package.py>`__
+
+Versions:
+  4.0.3
+Dependencies
+  mpi
+
+Description
+  ParMETIS is an MPI-based parallel library that implements a variety of
+  algorithms for partitioning unstructured graphs, meshes, and for
+  computing fill-reducing orderings of sparse matrices.
+
+
+-----
+
+.. _pmgr_collective:
+
+pmgr_collective
+---------------
+Links
+    * `Homepage <http://www.sourceforge.net/projects/pmgrcollective>`__
+    * `pmgr_collective/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pmgr_collective/package.py>`__
+
+Versions:
+  1.0
+Description
+  PMGR_COLLECTIVE provides a scalable network for bootstrapping MPI jobs.
+
+
+-----
+
+.. _postgresql:
+
+postgresql
+----------
+Links
+    * `Homepage <http://www.postgresql.org/>`__
+    * `postgresql/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/postgresql/package.py>`__
+
+Versions:
+  9.3.4
+Dependencies
+  `openssl`_
+
+Description
+  PostgreSQL is a powerful, open source object-relational database system.
+  It has more than 15 years of active development and a proven
+  architecture that has earned it a strong reputation for reliability,
+  data integrity, and correctness.
+
+
+-----
+
+.. _SAMRAI:
+
+SAMRAI
+------
+Links
+    * `Homepage <https://computation-rnd.llnl.gov/SAMRAI/confirm.php>`__
+    * `SAMRAI/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/SAMRAI/package.py>`__
+
+Versions:
+  3.7.3, 3.7.2, 3.6.3-beta, 3.5.2-beta, 3.5.0-beta, 3.4.1-beta, 3.3.3-beta, 3.3.2-beta, 2.4.4
+Dependencies
+  `zlib`_, `boost`_, `hdf5`_, mpi
+
+Description
+  SAMRAI (Structured Adaptive Mesh Refinement Application Infrastructure)
+  is an object-oriented C++ software library enables exploration of
+  numerical, algorithmic, parallel computing, and software issues
+  associated with applying structured adaptive mesh refinement (SAMR)
+  technology in large-scale parallel application development.
+
+
+-----
+
+.. _scalasca:
+
+scalasca
+--------
+Links
+    * `Homepage <http://www.scalasca.org>`__
+    * `scalasca/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scalasca/package.py>`__
+
+Versions:
+  2.1-rc2
+Dependencies
+  `otf2`_, `cube`_, mpi
+
+Description
+  Scalasca is a software tool that supports the performance optimization
+  of parallel programs by measuring and analyzing their runtime behavior.
+  The analysis identifies potential performance bottlenecks - in
+  particular those concerning communication and synchronization - and
+  offers guidance in exploring their causes.
+
+
+-----
+
+.. _scorep:
+
+scorep
+------
+Links
+    * `Homepage <http://www.vi-hps.org/projects/score-p>`__
+    * `scorep/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scorep/package.py>`__
+
+Versions:
+  1.3, 1.2.3
+Dependencies
+  `otf2`_, `cube`_, `opari2`_, `papi`_, mpi
+
+Description
+  The Score-P measurement infrastructure is a highly scalable and easy-to-
+  use tool suite for profiling, event tracing, and online analysis of HPC
+  applications.
+
+
+-----
+
+.. _scr:
+
+scr
+---
+Links
+    * `Homepage <https://computation-rnd.llnl.gov/scr>`__
+    * `scr/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scr/package.py>`__
+
+Versions:
+  1.1-7
+Dependencies
+  mpi
+
+Description
+  SCR caches checkpoint data in storage on the compute nodes of a Linux
+  cluster to provide a fast, scalable checkpoint/restart capability for
+  MPI codes
+
+
+-----
+
+.. _spindle:
+
+spindle
+-------
+Links
+    * `Homepage <https://computation-rnd.llnl.gov/spindle>`__
+    * `spindle/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/spindle/package.py>`__
+
+Versions:
+  0.8.1
+Dependencies
+  `launchmon`_
+
+Description
+  Spindle improves the library-loading performance of dynamically linked
+  HPC applications. Without Spindle large MPI jobs can overload on a
+  shared file system when loading dynamically linked libraries, causing
+  site-wide performance problems.
+
+
+-----
+
+.. _sqlite:
+
+sqlite
+------
+Links
+    * `Homepage <www.sqlite.org>`__
+    * `sqlite/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/sqlite/package.py>`__
+
+Versions:
+  3.8.5
+Description
+  SQLite3 is an SQL database engine in a C library. Programs that link the
+  SQLite3 library can have SQL database access without running a separate
+  RDBMS process.
+
+
+-----
+
+.. _stat:
+
+stat
+----
+Links
+    * `Homepage <http://paradyn.org/STAT/STAT.html>`__
+    * `stat/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/stat/package.py>`__
+
+Versions:
+  2.1.0, 2.0.0
+Dependencies
+  `launchmon`_, `graphlib`_, `dyninst`_, `mrnet`_, `libdwarf`_
+
+Description
+  Library to create, manipulate, and export graphs Graphlib.
+
+
+-----
+
+.. _sundials:
+
+sundials
+--------
+Links
+    * `Homepage <http://computation.llnl.gov/casc/sundials/>`__
+    * `sundials/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/sundials/package.py>`__
+
+Versions:
+  2.5.0
+Dependencies
+  mpi
+
+Description
+  SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation
+  Solvers)
+
+
+-----
+
+.. _swig:
+
+swig
+----
+Links
+    * `Homepage <http://www.swig.org>`__
+    * `swig/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/swig/package.py>`__
+
+Versions:
+  3.0.2
+Description
+  SWIG is an interface compiler that connects programs written in C and
+  C++ with scripting languages such as Perl, Python, Ruby, and Tcl. It
+  works by taking the declarations found in C/C++ header files and using
+  them to generate the wrapper code that scripting languages need to
+  access the underlying C/C++ code. In addition, SWIG provides a variety
+  of customization features that let you tailor the wrapping process to
+  suit your application.
+
+
+-----
+
+.. _tau:
+
+tau
+---
+Links
+    * `Homepage <http://www.cs.uoregon.edu/research/tau>`__
+    * `tau/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tau/package.py>`__
+
+Versions:
+  2.23.1
+Description
+  A portable profiling and tracing toolkit for performance analysis of
+  parallel programs written in Fortran, C, C++, UPC, Java, Python.
+
+
+-----
+
+.. _tmux:
+
+tmux
+----
+Links
+    * `Homepage <http://tmux.sourceforge.net>`__
+    * `tmux/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tmux/package.py>`__
+
+Versions:
+  1.9a
+Dependencies
+  `ncurses`_, `libevent`_
+
+Description
+  tmux is a terminal multiplexer. What is a terminal multiplexer? It lets
+  you switch easily between several programs in one terminal, detach them
+  (they keep running in the background) and reattach them to a different
+  terminal. And do a lot more.
+
+
+-----
+
+.. _vim:
+
+vim
+---
+Links
+    * `Homepage <http://www.vim.org>`__
+    * `vim/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/vim/package.py>`__
+
+Versions:
+  7.4, 7.3, 7.2, 7.1, 7.0, 6.4, 6.3, 6.2, 6.1.405, 6.1, 6.0
+Description
+  Vim is a highly configurable text editor built to enable efficient text
+  editing. It is an improved version of the vi editor distributed with
+  most UNIX systems. Vim is often called a "programmer's editor," and so
+  useful for programming that many consider it an entire IDE. It's not
+  just for programmers, though. Vim is perfect for all kinds of text
+  editing, from composing email to editing configuration files.
+
+
+-----
+
+.. _wx:
+
+wx
+--
+Links
+    * `Homepage <http://www.wxwidgets.org/>`__
+    * `wx/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/wx/package.py>`__
+
+Versions:
+  3.0.1, 2.8.12
+Description
+  wxWidgets is a C++ library that lets developers create applications for
+  Windows, Mac OS X, Linux and other platforms with a single code base. It
+  has popular language bindings for Python, Perl, Ruby and many other
+  languages, and unlike other cross-platform toolkits, wxWidgets gives
+  applications a truly native look and feel because it uses the platform's
+  native API rather than emulating the GUI. It's also extensive, free,
+  open-source and mature.
+
+
+-----
+
+.. _wxpropgrid:
+
+wxpropgrid
+----------
+Links
+    * `Homepage <http://wxpropgrid.sourceforge.net/>`__
+    * `wxpropgrid/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/wxpropgrid/package.py>`__
+
+Versions:
+  1.4.15
+Dependencies
+  `wx`_
+
+Description
+  wxPropertyGrid is a property sheet control for wxWidgets. In other
+  words, it is a specialized two-column grid for editing properties such
+  as strings, numbers, flagsets, string arrays, and colours.
+
+
+-----
+
+.. _zlib:
+
+zlib
+----
+Links
+    * `Homepage <http://zlib.net>`__
+    * `zlib/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/zlib/package.py>`__
+
+Versions:
+  1.2.8
+Description
+  zlib is designed to be a free, general-purpose, legally unencumbered --
+  that is, not covered by any patents -- lossless data-compression library
+  for use on virtually any computer hardware and operating system.
+
+
+-----

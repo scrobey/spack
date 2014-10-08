@@ -1,0 +1,957 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic usage &mdash; Spack 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'1.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Spack 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Packaging Guide" href="packaging_guide.html"/>
+        <link rel="prev" title="Getting Started" href="getting_started.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Spack</a>
+        <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spack.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Basic usage</a></li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="_sources/basic_usage.txt" rel="nofollow"> View page source</a>
+      
+    </li>
+</ul>
+<hr/>
+
+          
+  <div class="section" id="basic-usage">
+<span id="id1"></span><h1>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
+<p>Spack is implemented as a single command (<tt class="docutils literal"><span class="pre">spack</span></tt>) with many
+<em>subcommands</em>, much like <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">svn</span></tt>, <tt class="docutils literal"><span class="pre">yum</span></tt>, or <tt class="docutils literal"><span class="pre">apt-get</span></tt>.
+Only a small subset of commands are needed for typical usage.</p>
+<p>This section covers a small set of subcommands that should cover most
+general use cases for Spack.</p>
+<div class="section" id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="spack-help">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">help</span></tt><a class="headerlink" href="#spack-help" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">help</span></tt> subcommand will print out out a list of all of
+<tt class="docutils literal"><span class="pre">spack</span></tt>&#8216;s options and subcommands:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack help
+usage: spack [-h] [-V] [-v] [-d] [-k] [-m] SUBCOMMAND ...
+
+Spack: the Supercomputing PACKage Manager.
+
+positional arguments:
+  SUBCOMMAND
+    arch          Print the architecture for this machine
+    bootstrap     Create a new installation of spack in another prefix
+    cd            cd to spack directories in the shell.
+    checksum      Checksum available versions of a package to update a package
+                  file.
+    clean         Remove staged files for packages
+    compiler      Manage compilers
+    compilers     List available compilers. Same as &#39;spack compiler list&#39;.
+    config        Get and set configuration options.
+    create        Create a new package file from an archive URL
+    dependents    Show installed packages that depend on another.
+    doc           Run pydoc from within spack.
+    edit          Open package files in $EDITOR
+    fetch         Fetch archives for packages
+    find          Find installed spack packages
+    graph         Write out inter-package dependencies in dot graph format
+    help          Get help on spack and its commands
+    info          Get detailed information on a particular package
+    install       Build and install packages
+    list          List available spack packages
+    load          Add package to environment using modules.
+    location      Print out locations of various diectories used by Spack
+    mirror        Manage mirrors.
+    module        Manipulate modules and dotkits.
+    patch         Patch expanded archive sources in preparation for install
+    pkg           Query packages associated with particular git revisions in
+                  spack.
+    providers     List packages that provide a particular virtual package
+    purge         Remove all temporary build files and downloaded archives
+    python        Launch an interpreter as spack would launch a command
+    spec          print out abstract and concrete versions of a spec.
+    stage         Expand downloaded archive in preparation for install
+    test          Run unit tests
+    uninstall     Remove an installed package
+    unload        Remove package from environment using module.
+    unuse         Remove package from environment using dotkit.
+    use           Add package to environment using dotkit.
+    versions      List available versions of a package
+
+optional arguments:
+  -h, --help      show this help message and exit
+  -V, --version   show program&#39;s version number and exit
+  -v, --verbose   Print additional output during builds
+  -d, --debug     Write out debug logs during compile
+  -k, --insecure  Do not check ssl certificates when downloading archives.
+  -m, --mock      Use mock packages instead of real ones.
+</pre></div>
+</div>
+<p>Adding an argument, e.g. <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">help</span> <span class="pre">&lt;subcommand&gt;</span></tt>, will print out
+usage information for a particular subcommand:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack help install
+usage: spack install [-h] [-i] [--keep-prefix] [--keep-stage] [-n] ...
+
+positional arguments:
+  packages              specs of packages to install
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i, --ignore-dependencies
+                        Do not try to install dependencies of requested
+                        packages.
+  --keep-prefix         Don&#39;t remove the install prefix if installation fails.
+  --keep-stage          Don&#39;t remove the build stage if installation succeeds.
+  -n, --no-checksum     Do not check packages against checksum
+</pre></div>
+</div>
+<p>Alternately, you can use <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">-h</span></tt> in place of <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">help</span></tt>, or
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">&lt;subcommand&gt;</span> <span class="pre">-h</span></tt> to get help on a particular subcommand.</p>
+</div>
+</div>
+<div class="section" id="listing-available-packages">
+<h2>Listing available packages<a class="headerlink" href="#listing-available-packages" title="Permalink to this headline">¶</a></h2>
+<p>The first thing you will likely want to do with spack is find out what
+software is available to install.  There are a few relevant commands.</p>
+<div class="section" id="spack-list">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">list</span></tt><a class="headerlink" href="#spack-list" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">list</span></tt> command prints out a list of all of the packages
+Spack can install:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack list
+adept-utils  graphlib    libNBC     netgauge         postgresql  tau
+automaded    hdf5        libunwind  ompss            SAMRAI      tmux
+boost        hwloc       llvm       opari2           scalasca    vim
+callpath     launchmon   llvm-lld   openmpi          scorep      wx
+clang        libarchive  lwgrp      openssl          scr         wxpropgrid
+cmake        libcircle   mpich      otf2             spindle     zlib
+cube         libdwarf    mpileaks   papi             sqlite      
+dtcmp        libelf      mrnet      paraver          stat        
+dyninst      libevent    mvapich2   parmetis         sundials    
+extrae       libmonitor  ncurses    pmgr_collective  swig
+</pre></div>
+</div>
+<p>The packages are listed by name in alphabetical order.</p>
+</div>
+<div class="section" id="spack-info">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">info</span></tt><a class="headerlink" href="#spack-info" title="Permalink to this headline">¶</a></h3>
+<p>To get information on a particular package from the full list, run
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">info</span> <span class="pre">&lt;package</span> <span class="pre">name&gt;</span></tt>.  For example, for <tt class="docutils literal"><span class="pre">mpich</span></tt> the output
+looks like this:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack info mpich
+Package:    mpich
+Homepage:   http://www.mpich.org
+
+Safe versions:  
+    3.0.4    http://www.mpich.org/static/downloads/3.0.4/mpich-3.0.4.tar.gz
+
+Dependencies:
+    None
+
+Virtual packages: 
+    mpich@1: provides mpi@:1
+    mpich@3: provides mpi@:3
+
+Description:
+    MPICH is a high performance and widely portable implementation of the
+    Message Passing Interface (MPI) standard.
+</pre></div>
+</div>
+<p>This includes basic information about the package: where to download
+it, its dependencies, virtual packages it provides (e.g. an MPI
+implementation will provide the MPI interface), and a text
+description, if one is available.  <a class="reference internal" href="#sec-specs"><em>Dependencies</em></a> and <a class="reference internal" href="#sec-virtual-dependencies"><em>virtual dependencies</em></a> are described in more detail later.</p>
+</div>
+<div class="section" id="spack-versions">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">versions</span></tt><a class="headerlink" href="#spack-versions" title="Permalink to this headline">¶</a></h3>
+<p>To see available versions of a package, run <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">versions</span></tt>, for
+example:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack versions libelf
+0.8.13  0.8.11  0.8.9  0.8.7  0.8.5  0.8.3  0.8.0  0.6.4
+0.8.12  0.8.10  0.8.8  0.8.6  0.8.4  0.8.2  0.7.0  0.5.2
+</pre></div>
+</div>
+<p>Since it has to manage many different software packages, Spack doesn&#8217;t
+place many restrictions on what a package version has to look like.
+Packages like <tt class="docutils literal"><span class="pre">mpich</span></tt> use traditional version numbers like
+<tt class="docutils literal"><span class="pre">3.0.4</span></tt>. Other packages, like <tt class="docutils literal"><span class="pre">libdwarf</span></tt> use date-stamp versions
+like <tt class="docutils literal"><span class="pre">20130729</span></tt>.  Versions can contain numbers, letters, dashes,
+underscores, and periods.</p>
+</div>
+</div>
+<div class="section" id="compiler-configuration">
+<h2>Compiler Configuration<a class="headerlink" href="#compiler-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Spack has the ability to build packages with multiple compilers and
+compiler versions. Spack searches for compilers on your machine
+automatically the first time it is run. It does this by inspecting
+your path.</p>
+<div class="section" id="spack-compilers">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compilers</span></tt><a class="headerlink" href="#spack-compilers" title="Permalink to this headline">¶</a></h3>
+<p>You can see which compilers spack has found by running <tt class="docutils literal"><span class="pre">spack</span>
+<span class="pre">compilers</span></tt> or <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">list</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ spack compilers
+==&gt; Available compilers
+-- gcc ---------------------------------------------------------
+    gcc@4.9.0  gcc@4.8.0  gcc@4.7.0  gcc@4.6.2  gcc@4.4.7
+    gcc@4.8.2  gcc@4.7.1  gcc@4.6.3  gcc@4.6.1  gcc@4.1.2
+-- intel -------------------------------------------------------
+    intel@15.0.0  intel@14.0.0  intel@13.0.0  intel@12.1.0  intel@10.0
+    intel@14.0.3  intel@13.1.1  intel@12.1.5  intel@12.0.4  intel@9.1
+    intel@14.0.2  intel@13.1.0  intel@12.1.3  intel@11.1
+    intel@14.0.1  intel@13.0.1  intel@12.1.2  intel@10.1
+-- clang -------------------------------------------------------
+    clang@3.4  clang@3.3  clang@3.2  clang@3.1
+-- pgi ---------------------------------------------------------
+    pgi@14.3-0   pgi@13.2-0  pgi@12.1-0   pgi@10.9-0  pgi@8.0-1
+    pgi@13.10-0  pgi@13.1-1  pgi@11.10-0  pgi@10.2-0  pgi@7.1-3
+    pgi@13.6-0   pgi@12.8-0  pgi@11.1-0   pgi@9.0-4   pgi@7.0-6
+</pre></div>
+</div>
+<p>Any of these compilers can be used to build Spack packages.  More on
+how this is done is in <a class="reference internal" href="#sec-specs"><em>Specs &amp; Dependencies</em></a>.</p>
+</div>
+<div class="section" id="spack-compiler-add">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">add</span></tt><a class="headerlink" href="#spack-compiler-add" title="Permalink to this headline">¶</a></h3>
+<p>If you do not see a compiler in this list, but you want to use it with
+Spack, you can simply run <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">add</span></tt> with the path to
+where the compiler is installed.  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ spack compiler add /usr/local/tools/ic-13.0.079
+==&gt; Added 1 new compiler to /Users/gamblin2/.spackconfig
+    intel@13.0.079
+</pre></div>
+</div>
+<p>Or you can run <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">add</span></tt> with no arguments to force
+autodetection.  This is useful if you do not know where compilers
+live, but new compilers have been added to your <tt class="docutils literal"><span class="pre">PATH</span></tt>.  For
+example, using dotkit, you might do this:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ use gcc-4.9.0
+$ spack compiler add
+==&gt; Added 1 new compiler to /Users/gamblin2/.spackconfig
+    gcc@4.9.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="spack-compiler-info">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">info</span></tt><a class="headerlink" href="#spack-compiler-info" title="Permalink to this headline">¶</a></h3>
+<p>If you want to see specifics on a particular compiler, you can run
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">info</span></tt> on it:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ spack compiler info intel@12.1.3
+intel@12.1.3:
+cc  = /usr/local/bin/icc-12.1.293
+cxx = /usr/local/bin/icpc-12.1.293
+f77 = /usr/local/bin/ifort-12.1.293
+fc = /usr/local/bin/ifort-12.1.293
+</pre></div>
+</div>
+<p>This shows which C, C++, and Fortran compilers were detected by Spack.</p>
+</div>
+<div class="section" id="manual-configuration">
+<h3>Manual configuration<a class="headerlink" href="#manual-configuration" title="Permalink to this headline">¶</a></h3>
+<p>If autodetection fails, you can manually conigure a compiler by
+editing your <tt class="docutils literal"><span class="pre">~/.spackconfig</span></tt> file.  You can do this by running
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">config</span> <span class="pre">edit</span></tt>, which will open the file in your <tt class="docutils literal"><span class="pre">$EDITOR</span></tt>.</p>
+<p>Each compiler configuration in the file looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>...
+[compiler &quot;intel@15.0.0&quot;]
+    cc = /usr/local/bin/icc-15.0.024-beta
+    cxx = /usr/local/bin/icpc-15.0.024-beta
+    f77 = /usr/local/bin/ifort-15.0.024-beta
+    fc = /usr/local/bin/ifort-15.0.024-beta
+...
+</pre></div>
+</div>
+<p>For compilers, like <tt class="docutils literal"><span class="pre">clang</span></tt>, that do not support Fortran, you can simply
+put <tt class="docutils literal"><span class="pre">None</span></tt> for <tt class="docutils literal"><span class="pre">f77</span></tt> and <tt class="docutils literal"><span class="pre">fc</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>[compiler &quot;clang@3.3svn&quot;]
+    cc = /usr/bin/clang
+    cxx = /usr/bin/clang++
+    f77 = None
+    fc = None
+</pre></div>
+</div>
+<p>Once you save the file, the configured compilers will show up in the
+list displayed when you run <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compilers</span></tt>.</p>
+<p>Seeing installed packages &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
+</div>
+<div class="section" id="spack-find">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">find</span></tt><a class="headerlink" href="#spack-find" title="Permalink to this headline">¶</a></h3>
+<p>The second thing you&#8217;re likely to want to do with Spack, and the first
+thing users of your system will likely want to do, is to find what
+software is already installed and ready to use.  You can do that with
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">find</span></tt>.</p>
+<p>Running <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">find</span></tt> with no arguments will list all the installed
+packages:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>spack <span class="nv">find</span>
+<span class="o">==</span> <span class="nv">chaos_5_x86_64_ib</span> <span class="o">===========================================</span>
+-- gcc@4.4.7 ---------------------------------------------------
+    libdwarf@20130207-d9b909
+    libdwarf@20130729-d9b909
+    libdwarf@20130729-b52fac
+    libelf@0.8.11
+    libelf@0.8.12
+    libelf@0.8.13
+</pre></div>
+</div>
+<p>Packages are grouped by architecture, then by the compiler used to
+build them, and then by their versions and options.  If a package has
+dependencies, there will also be a hash at the end of the name
+indicating the dependency configuration.  Packages with the same hash
+have the same dependency configuration.  If you want ALL information
+about dependencies, as well, then you can supply <tt class="docutils literal"><span class="pre">-l</span></tt> or <tt class="docutils literal"><span class="pre">--long</span></tt>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>spack find -l
+<span class="o">==</span> <span class="nv">chaos_5_x86_64_ib</span> <span class="o">===========================================</span>
+-- gcc@4.4.7 ---------------------------------------------------
+    libdwarf@20130207
+        ^libelf@0.8.12
+    libdwarf@20130729
+        ^libelf@0.8.12
+    libdwarf@20130729
+        ^libelf@0.8.13
+    libelf@0.8.11
+    libelf@0.8.12
+    libelf@0.8.13
+</pre></div>
+</div>
+<p>Now you can see which versions of <tt class="docutils literal"><span class="pre">libelf</span></tt> each version of
+<tt class="docutils literal"><span class="pre">libdwarf</span></tt> was built with.</p>
+<p>If you want to know the path where each of these packages is
+installed, do <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">find</span> <span class="pre">-p</span></tt> or <tt class="docutils literal"><span class="pre">--path</span></tt>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>spack find -p
+<span class="o">==</span> <span class="nv">chaos_5_x86_64_ib</span> <span class="o">===========================================</span>
+-- gcc@4.4.7 ---------------------------------------------------
+    libdwarf@20130207-d9b909  /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libdwarf@20130207-d9b909
+    libdwarf@20130729-d9b909  /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libdwarf@20130729-d9b909
+    libdwarf@20130729-b52fac  /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libdwarf@20130729-b52fac
+    libelf@0.8.11             /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libelf@0.8.11
+    libelf@0.8.12             /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libelf@0.8.12
+    libelf@0.8.13             /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libelf@0.8.13
+</pre></div>
+</div>
+<p>And, finally, you can restrict your search to a particular package
+by supplying its name:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>spack find -p <span class="nv">libelf</span>
+<span class="o">==</span> <span class="nv">chaos_5_x86_64_ib</span> <span class="o">===========================================</span>
+-- gcc@4.4.7 ---------------------------------------------------
+    libelf@0.8.11  /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libelf@0.8.11
+    libelf@0.8.12  /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libelf@0.8.12
+    libelf@0.8.13  /g/g21/gamblin2/src/spack/opt/chaos_5_x86_64_ib/gcc@4.4.7/libelf@0.8.13
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">find</span></tt> actually does a lot more than this.  You can use
+<em>specs</em> to query for specific configurations and builds of each
+package.  The full spec syntax is discussed in detail in
+<a class="reference internal" href="#sec-specs"><em>Specs &amp; Dependencies</em></a>.</p>
+</div>
+</div>
+<div class="section" id="installing-and-uninstalling">
+<h2>Installing and uninstalling<a class="headerlink" href="#installing-and-uninstalling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="spack-install">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span></tt><a class="headerlink" href="#spack-install" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span></tt> will install any package that appears in the output
+of <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">list</span></tt>.  To install the latest version of a pacakge and all
+of its dependencies, simply run <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></tt>:</p>
+<div class="highlight-sh"><div class="highlight"><pre>spack install mpileaks
+</pre></div>
+</div>
+<p>Spack will fetch the tarball for <tt class="docutils literal"><span class="pre">mpileaks</span></tt>, expand it, verify that
+it was downloaded without errors, build it, and install it in its own
+directory under <tt class="docutils literal"><span class="pre">$SPACK_HOME/opt</span></tt>.  If the requested package depends
+on other packages in order to build, Spack fetches them as well, and
+installs them before it installs the requested package. Like the main
+package, each dependency is also installed in its own directory.</p>
+<p>Spack can also build <em>specific</em> configurations of a package.  For
+example, to install something with a specific version, add <tt class="docutils literal"><span class="pre">&#64;</span></tt> after
+the package name, followed by a version string:</p>
+<div class="highlight-sh"><div class="highlight"><pre>spack install mpich@3.0.4
+</pre></div>
+</div>
+<p>Any number of configurations of the same package can be installed at
+once without interfering with each other.  This is good for multi-user
+sites, as installing a version that one user needs will not disrupt
+existing installations for other users.</p>
+<p>In addition to version configuraitons, Spack can customize the
+compiler, compile-time options (variants), and platform (for cross
+compiles) of an installation.  Spack is unique in that it can also
+configure the <em>dependencies</em> a package is built with.  For example,
+two configurations of the same version of a package, one built with
+boost 1.39.0, and the other version built with version 1.43.0, can
+coexist.</p>
+<p>This can all be done on the command line using special syntax.  Spack
+calls the descriptor used to refer to a particular package
+configuration a <strong>spec</strong>.  In the command lines above, both
+<tt class="docutils literal"><span class="pre">mpileaks</span></tt> and <tt class="docutils literal"><span class="pre">mpileaks&#64;3.0.4</span></tt> are specs.  To customize
+additional properties, simply add more attributes to the spec.  Specs
+and their syntax are covered in more detail in <a class="reference internal" href="#sec-specs"><em>Specs &amp; Dependencies</em></a>.</p>
+</div>
+<div class="section" id="spack-uninstall">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span></tt><a class="headerlink" href="#spack-uninstall" title="Permalink to this headline">¶</a></h3>
+<p>To uninstall a package, type <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span> <span class="pre">&lt;package&gt;</span></tt>.  This will
+completely remove the directory in which the package was installed.</p>
+<div class="highlight-sh"><div class="highlight"><pre>spack uninstall mpich
+</pre></div>
+</div>
+<p>If there are still installed packages that depend on the package to be
+uninstalled, spack will issue a warning.  In general, it is safer to
+remove dependent packages <em>before</em> removing their dependencies.  Not
+doing so risks breaking packages on your system.  To remove a package
+without regard for its dependencies, run <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span> <span class="pre">-f</span>
+<span class="pre">&lt;package&gt;</span></tt> to override the warning.</p>
+<p>A line like <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span> <span class="pre">mpich</span></tt> may be ambiguous, if multiple
+<tt class="docutils literal"><span class="pre">mpich</span></tt> configurations are installed.  For example, if both
+<tt class="docutils literal"><span class="pre">mpich&#64;3.0.2</span></tt> and <tt class="docutils literal"><span class="pre">mpich&#64;3.1</span></tt> are installed, it could refer to
+either one, and Spack cannot determine which one to uninstall.  Spack
+will ask you to provide a version number to remove any ambiguity.  For
+example, <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span> <span class="pre">mpich&#64;3.1</span></tt> is unambiguous in the
+above scenario.</p>
+</div>
+</div>
+<div class="section" id="specs-dependencies">
+<span id="sec-specs"></span><h2>Specs &amp; Dependencies<a class="headerlink" href="#specs-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>We now know that <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span></tt> and <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span></tt> both take a
+package name with an optional version specifier.  In Spack, that
+descriptor is called a <em>spec</em>.  Spack uses specs to refer to a
+particular build configuration (or configurations) of a package.
+Specs are more than a package name and a version; you can use them to
+specify the compiler, compiler version, architecture, compile options,
+and dependency options for a build.  In this section, we&#8217;ll go over
+the full syntax of specs.</p>
+<p>Here is an example of a much longer spec than we&#8217;ve seen thus far:</p>
+<div class="highlight-python"><div class="highlight"><pre>mpileaks @1.2:1.4 %gcc@4.7.5 +debug -qt =bgqos_0 ^callpath @1.1 %gcc@4.7.2
+</pre></div>
+</div>
+<p>If provided to <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span></tt>, this will install the <tt class="docutils literal"><span class="pre">mpileaks</span></tt>
+library at some version between <tt class="docutils literal"><span class="pre">1.2</span></tt> and <tt class="docutils literal"><span class="pre">1.4</span></tt> (inclusive),
+built using <tt class="docutils literal"><span class="pre">gcc</span></tt> at version 4.7.5 for the Blue Gene/Q architecture,
+with debug options enabled, and without Qt support.  Additionally, it
+says to link it with the <tt class="docutils literal"><span class="pre">callpath</span></tt> library (which it depends on),
+and to build callpath with <tt class="docutils literal"><span class="pre">gcc</span></tt> 4.7.2.  Most specs will not be as
+complicated as this one, but this is a good example of what is
+possible with specs.</p>
+<p>More formally, a spec consists of the following pieces:</p>
+<ul class="simple">
+<li>Package name identifier (<tt class="docutils literal"><span class="pre">mpileaks</span></tt> above)</li>
+<li><tt class="docutils literal"><span class="pre">&#64;</span></tt> Optional version specifier (<tt class="docutils literal"><span class="pre">&#64;1.2:1.4</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">%</span></tt> Optional compiler specifier, with an optional compiler version
+(<tt class="docutils literal"><span class="pre">gcc</span></tt> or <tt class="docutils literal"><span class="pre">gcc&#64;4.7.3</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">+</span></tt> or <tt class="docutils literal"><span class="pre">-</span></tt> or <tt class="docutils literal"><span class="pre">~</span></tt> Optional variant specifiers (<tt class="docutils literal"><span class="pre">+debug</span></tt>,
+<tt class="docutils literal"><span class="pre">-qt</span></tt>, or <tt class="docutils literal"><span class="pre">~qt</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">=</span></tt> Optional architecture specifier (<tt class="docutils literal"><span class="pre">bgqos_0</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">^</span></tt> Dependency specs (<tt class="docutils literal"><span class="pre">^callpath&#64;1.1</span></tt>)</li>
+</ul>
+<p>There are two things to notice here.  The first is that specs are
+recursively defined.  That is, each dependency after <tt class="docutils literal"><span class="pre">^</span></tt> is a spec
+itself.  The second is that everything is optional <em>except</em> for the
+initial package name identifier.  Users can be as vague or as specific
+as they want about the details of building packages, and this makes
+spack good for beginners and experts alike.</p>
+<p>To really understand what&#8217;s going on above, we need to think about how
+software is structured.  An executable or a library (these are
+generally the artifacts produced by building software) depends on
+other libraries in order to run.  We can represent the relationship
+between a package and its dependencies as a graph.  Here is the full
+dependency graph for <tt class="docutils literal"><span class="pre">mpileaks</span></tt>:</p>
+<p class="graphviz">
+<img src="_images/graphviz-325e0c19f54e3ad96c0c2c9c99e7bc9cc43ef14f.svg" alt="digraph {
+    mpileaks -&gt; mpich
+    mpileaks -&gt; callpath -&gt; mpich
+    callpath -&gt; dyninst
+    dyninst  -&gt; libdwarf -&gt; libelf
+    dyninst  -&gt; libelf
+}" />
+</p>
+<p>Each box above is a package and each arrow represents a dependency on
+some other package.  For example, we say that the package <tt class="docutils literal"><span class="pre">mpileaks</span></tt>
+<em>depends on</em> <tt class="docutils literal"><span class="pre">callpath</span></tt> and <tt class="docutils literal"><span class="pre">mpich</span></tt>.  <tt class="docutils literal"><span class="pre">mpileaks</span></tt> also depends
+<em>indirectly</em> on <tt class="docutils literal"><span class="pre">dyninst</span></tt>, <tt class="docutils literal"><span class="pre">libdwarf</span></tt>, and <tt class="docutils literal"><span class="pre">libelf</span></tt>, in that
+these libraries are dependencies of <tt class="docutils literal"><span class="pre">callpath</span></tt>.  To install
+<tt class="docutils literal"><span class="pre">mpileaks</span></tt>, Spack has to build all of these packages.  Dependency
+graphs in Spack have to be acyclic, and the <em>depends on</em> relationship
+is directional, so this is a <em>directed, acyclic graph</em> or <em>DAG</em>.</p>
+<p>The package name identifier in the spec is the root of some dependency
+DAG, and the DAG itself is implicit.  Spack knows the precise
+dependencies among packages, but users do not need to know the full
+DAG structure. Each <tt class="docutils literal"><span class="pre">^</span></tt> in the full spec refers to some dependency
+of the root package. Spack will raise an error if you supply a name
+after <tt class="docutils literal"><span class="pre">^</span></tt> that the root does not actually depend on (e.g. <tt class="docutils literal"><span class="pre">mpileaks</span>
+<span class="pre">^emacs&#64;23.3</span></tt>).</p>
+<p>Spack further simplifies things by only allowing one configuration of
+each package within any single build.  Above, both <tt class="docutils literal"><span class="pre">mpileaks</span></tt> and
+<tt class="docutils literal"><span class="pre">callpath</span></tt> depend on <tt class="docutils literal"><span class="pre">mpich</span></tt>, but <tt class="docutils literal"><span class="pre">mpich</span></tt> appears only once in
+the DAG.  You cannot build an <tt class="docutils literal"><span class="pre">mpileaks</span></tt> version that depends on one
+version of <tt class="docutils literal"><span class="pre">mpich</span></tt> <em>and</em> on a <tt class="docutils literal"><span class="pre">callpath</span></tt> version that depends on
+some <em>other</em> version of <tt class="docutils literal"><span class="pre">mpich</span></tt>.  In general, such a configuration
+would likely behave unexpectedly at runtime, and Spack enforces this
+to ensure a consistent runtime environment.</p>
+<p>The point of specs is to abstract this full DAG from Spack users.  If
+a user does not care about the DAG at all, she can refer to mpileaks
+by simply writing <tt class="docutils literal"><span class="pre">mpileaks</span></tt>.  If she knows that <tt class="docutils literal"><span class="pre">mpileaks</span></tt>
+indirectly uses <tt class="docutils literal"><span class="pre">dyninst</span></tt> and she wants a particular version of
+<tt class="docutils literal"><span class="pre">dyninst</span></tt>, then she can refer to <tt class="docutils literal"><span class="pre">mpileaks</span> <span class="pre">^dyninst&#64;8.1</span></tt>.  Spack
+will fill in the rest when it parses the spec; the user only needs to
+know package names and minimal details about their relationship.</p>
+<p>When spack prints out specs, it sorts package names alphabetically to
+normalize the way they are displayed, but users do not need to worry
+about this when they write specs.  The only restriction on the order
+of dependencies within a spec is that they appear <em>after</em> the root
+package.  For example, these two specs represent exactly the same
+configuration:</p>
+<div class="highlight-sh"><div class="highlight"><pre>mpileaks ^callpath@1.0 ^libelf@0.8.3
+mpileaks ^libelf@0.8.3 ^callpath@1.0
+</pre></div>
+</div>
+<p>You can put all the same modifiers on dependency specs that you would
+put on the root spec.  That is, you can specify their versions,
+compilers, variants, and architectures just like any other spec.
+Specifiers are associated with the nearest package name to their left.
+For example, above, <tt class="docutils literal"><span class="pre">&#64;1.1</span></tt> and <tt class="docutils literal"><span class="pre">%gcc&#64;4.7.2</span></tt> associates with the
+<tt class="docutils literal"><span class="pre">callpath</span></tt> package, while <tt class="docutils literal"><span class="pre">&#64;1.2:1.4</span></tt>, <tt class="docutils literal"><span class="pre">%gcc&#64;4.7.5</span></tt>, <tt class="docutils literal"><span class="pre">+debug</span></tt>,
+<tt class="docutils literal"><span class="pre">-qt</span></tt>, and <tt class="docutils literal"><span class="pre">=bgqos_0</span></tt> all associate with the <tt class="docutils literal"><span class="pre">mpileaks</span></tt> package.</p>
+<p>In the diagram above, <tt class="docutils literal"><span class="pre">mpileaks</span></tt> depends on <tt class="docutils literal"><span class="pre">mpich</span></tt> with an
+unspecified version, but packages can depend on other packages with
+<em>constraints</em> by adding more specifiers.  For example, <tt class="docutils literal"><span class="pre">mpileaks</span></tt>
+could depend on <tt class="docutils literal"><span class="pre">mpich&#64;1.2:</span></tt> if it can only build with version
+<tt class="docutils literal"><span class="pre">1.2</span></tt> or higher of <tt class="docutils literal"><span class="pre">mpich</span></tt>.</p>
+<p>Below are more details about the specifiers that you can add to specs.</p>
+<div class="section" id="version-specifier">
+<h3>Version specifier<a class="headerlink" href="#version-specifier" title="Permalink to this headline">¶</a></h3>
+<p>A version specifier comes somewhere after a package name and starts
+with <tt class="docutils literal"><span class="pre">&#64;</span></tt>.  It can be a single version, e.g. <tt class="docutils literal"><span class="pre">&#64;1.0</span></tt>, <tt class="docutils literal"><span class="pre">&#64;3</span></tt>, or
+<tt class="docutils literal"><span class="pre">&#64;1.2a7</span></tt>.  Or, it can be a range of versions, such as <tt class="docutils literal"><span class="pre">&#64;1.0:1.5</span></tt>
+(all versions between <tt class="docutils literal"><span class="pre">1.0</span></tt> and <tt class="docutils literal"><span class="pre">1.5</span></tt>, inclusive).  Version ranges
+can be open, e.g. <tt class="docutils literal"><span class="pre">:3</span></tt> means any version up to and including <tt class="docutils literal"><span class="pre">3</span></tt>.
+This would include <tt class="docutils literal"><span class="pre">3.4</span></tt> and <tt class="docutils literal"><span class="pre">3.4.2</span></tt>.  <tt class="docutils literal"><span class="pre">4.2:</span></tt> means any version
+above and including <tt class="docutils literal"><span class="pre">4.2</span></tt>.  Finally, a version specifier can be a
+set of arbitrary versions, such as <tt class="docutils literal"><span class="pre">&#64;1.0,1.5,1.7</span></tt> (<tt class="docutils literal"><span class="pre">1.0</span></tt>, <tt class="docutils literal"><span class="pre">1.5</span></tt>,
+or <tt class="docutils literal"><span class="pre">1.7</span></tt>).  When you supply such a specifier to <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span></tt>,
+it constrains the set of versions that Spack will install.</p>
+<p>If the version spec is not provided, then Spack will choose one
+according to policies set for the particular spack installation.  If
+the spec is ambiguous, i.e. it could match multiple versions, Spack
+will choose a version within the spec&#8217;s constraints according to
+policies set for the particular Spack installation.</p>
+<p>Details about how versions are compared and how Spack determines if
+one version is less than another are discussed in the developer guide.</p>
+</div>
+<div class="section" id="compiler-specifier">
+<h3>Compiler specifier<a class="headerlink" href="#compiler-specifier" title="Permalink to this headline">¶</a></h3>
+<p>A compiler specifier comes somewhere after a package name and starts
+with <tt class="docutils literal"><span class="pre">%</span></tt>.  It tells Spack what compiler(s) a particular package
+should be built with.  After the <tt class="docutils literal"><span class="pre">%</span></tt> should come the name of some
+registered Spack compiler.  This might include <tt class="docutils literal"><span class="pre">gcc</span></tt>, or <tt class="docutils literal"><span class="pre">intel</span></tt>,
+but the specific compilers available depend on the site.  You can run
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compilers</span></tt> to get a list; more on this below.</p>
+<p>The compiler spec can be followed by an optional <em>compiler version</em>.
+A compiler version specifier looks exactly like a package version
+specifier.  Version specifiers will associate with the nearest package
+name or compiler specifier to their left in the spec.</p>
+<p>If the compiler spec is omitted, Spack will choose a default compiler
+based on site policies.</p>
+</div>
+<div class="section" id="variants">
+<h3>Variants<a class="headerlink" href="#variants" title="Permalink to this headline">¶</a></h3>
+<p>Variants are named options associated with a particular package, and
+they can be turned on or off.  For example, above, supplying
+<tt class="docutils literal"><span class="pre">+debug</span></tt> causes <tt class="docutils literal"><span class="pre">mpileaks</span></tt> to be built with debug flags.  The
+names of particular variants available for a package depend on what
+was provided by the package author.  <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">info</span> <span class="pre">&lt;package&gt;</span></tt> will
+provide information on what build variants are available.</p>
+<p>Depending on the package a variant may be on or off by default.  For
+<tt class="docutils literal"><span class="pre">mpileaks</span></tt> here, <tt class="docutils literal"><span class="pre">debug</span></tt> is off by default, and we turned it on
+with <tt class="docutils literal"><span class="pre">+debug</span></tt>.  If a package is on by default you can turn it off by
+either adding <tt class="docutils literal"><span class="pre">-name</span></tt> or <tt class="docutils literal"><span class="pre">~name</span></tt> to the spec.</p>
+<p>There are two syntaxes here because, depending on context, <tt class="docutils literal"><span class="pre">~</span></tt> and
+<tt class="docutils literal"><span class="pre">-</span></tt> may mean different things.  In most shells, the following will
+result in the shell performing home directory substitution:</p>
+<div class="highlight-sh"><div class="highlight"><pre>mpileaks ~debug   <span class="c"># shell may try to substitute this!</span>
+mpileaks~debug    <span class="c"># use this instead</span>
+</pre></div>
+</div>
+<p>If there is a user called <tt class="docutils literal"><span class="pre">debug</span></tt>, the <tt class="docutils literal"><span class="pre">~</span></tt> will be incorrectly
+expanded.  In this situation, you would want to write <tt class="docutils literal"><span class="pre">mpileaks</span>
+<span class="pre">-debug</span></tt>.  However, <tt class="docutils literal"><span class="pre">-</span></tt> can be ambiguous when included after a
+package name without spaces:</p>
+<div class="highlight-sh"><div class="highlight"><pre>mpileaks-debug     <span class="c"># wrong!</span>
+mpileaks -debug    <span class="c"># right</span>
+</pre></div>
+</div>
+<p>Spack allows the <tt class="docutils literal"><span class="pre">-</span></tt> character to be part of package names, so the
+above will be interpreted as a request for the <tt class="docutils literal"><span class="pre">mpileaks-debug</span></tt>
+package, not a request for <tt class="docutils literal"><span class="pre">mpileaks</span></tt> built without <tt class="docutils literal"><span class="pre">debug</span></tt>
+options.  In this scenario, you should write <tt class="docutils literal"><span class="pre">mpileaks~debug</span></tt> to
+avoid ambiguity.</p>
+<p>When spack normalizes specs, it prints them out with no spaces and
+uses only <tt class="docutils literal"><span class="pre">~</span></tt> for disabled variants.  We allow <tt class="docutils literal"><span class="pre">-</span></tt> and spaces on
+the command line is provided for convenience and legibility.</p>
+</div>
+<div class="section" id="architecture-specifier">
+<h3>Architecture specifier<a class="headerlink" href="#architecture-specifier" title="Permalink to this headline">¶</a></h3>
+<p>The architecture specifier starts with a <tt class="docutils literal"><span class="pre">=</span></tt> and also comes after
+some package name within a spec.  It allows a user to specify a
+particular architecture for the package to be built.  This is mostly
+used for architectures that need cross-compilation, and in most cases,
+users will not need to specify the architecture when they install a
+package.</p>
+</div>
+</div>
+<div class="section" id="virtual-dependencies">
+<span id="sec-virtual-dependencies"></span><h2>Virtual dependencies<a class="headerlink" href="#virtual-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>The dependence graph for <tt class="docutils literal"><span class="pre">mpileaks</span></tt> we saw above wasn&#8217;t <em>quite</em>
+accurate.  <tt class="docutils literal"><span class="pre">mpileaks</span></tt> uses MPI, which is an interface that has many
+different implementations.  Above, we showed <tt class="docutils literal"><span class="pre">mpileaks</span></tt> and
+<tt class="docutils literal"><span class="pre">callpath</span></tt> depending on <tt class="docutils literal"><span class="pre">mpich</span></tt>, which is one <em>particular</em>
+implementation of MPI.  However, we could build either with another
+implementation, such as <tt class="docutils literal"><span class="pre">openmpi</span></tt> or <tt class="docutils literal"><span class="pre">mvapich</span></tt>.</p>
+<p>Spack represents interfaces like this using <em>virtual dependencies</em>.
+The real dependency DAG for <tt class="docutils literal"><span class="pre">mpileaks</span></tt> looks like this:</p>
+<p class="graphviz">
+<img src="_images/graphviz-39b305b8aea6e4a16c291bc36d5ea08b2eb2d83d.svg" alt="digraph {
+    mpi [color=red]
+    mpileaks -&gt; mpi
+    mpileaks -&gt; callpath -&gt; mpi
+    callpath -&gt; dyninst
+    dyninst  -&gt; libdwarf -&gt; libelf
+    dyninst  -&gt; libelf
+}" />
+</p>
+<p>Notice that <tt class="docutils literal"><span class="pre">mpich</span></tt> has now been replaced with <tt class="docutils literal"><span class="pre">mpi</span></tt>. There is no
+<em>real</em> MPI package, but some packages <em>provide</em> the MPI interface, and
+these packages can be substituted in for <tt class="docutils literal"><span class="pre">mpi</span></tt> when <tt class="docutils literal"><span class="pre">mpileaks</span></tt> is
+built.</p>
+<p>You can see what virtual packages a particular package provides by
+getting info on it:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack info mpich
+Package:    mpich
+Homepage:   http://www.mpich.org
+
+Safe versions:  
+    3.0.4    http://www.mpich.org/static/downloads/3.0.4/mpich-3.0.4.tar.gz
+
+Dependencies:
+    None
+
+Virtual packages: 
+    mpich@1: provides mpi@:1
+    mpich@3: provides mpi@:3
+
+Description:
+    MPICH is a high performance and widely portable implementation of the
+    Message Passing Interface (MPI) standard.
+</pre></div>
+</div>
+<p>Spack is unique in that its virtual packages can be versioned, just
+like regular packages.  A particular version of a package may provide
+a particular version of a virtual package, and we can see above that
+<tt class="docutils literal"><span class="pre">mpich</span></tt> versions <tt class="docutils literal"><span class="pre">1</span></tt> and above provide all <tt class="docutils literal"><span class="pre">mpi</span></tt> interface
+versions up to <tt class="docutils literal"><span class="pre">1</span></tt>, and <tt class="docutils literal"><span class="pre">mpich</span></tt> versions <tt class="docutils literal"><span class="pre">3</span></tt> and above provide
+<tt class="docutils literal"><span class="pre">mpi</span></tt> versions up to <tt class="docutils literal"><span class="pre">3</span></tt>.  A package can <em>depend on</em> a particular
+version of a virtual package, e.g. if an application needs MPI-2
+functions, it can depend on <tt class="docutils literal"><span class="pre">mpi&#64;2:</span></tt> to indicate that it needs some
+implementation that provides MPI-2 functions.</p>
+<div class="section" id="constraining-virtual-packages">
+<h3>Constraining virtual packages<a class="headerlink" href="#constraining-virtual-packages" title="Permalink to this headline">¶</a></h3>
+<p>When installing a package that depends on a virtual package, you can
+opt to specify the particular provider you want to use, or you can let
+Spack pick.  For example, if you just type this:</p>
+<div class="highlight-python"><div class="highlight"><pre>spack install mpileaks
+</pre></div>
+</div>
+<p>Then spack will pick a provider for you according to site policies.
+If you really want a particular version, say mpich, then you could
+run this instead:</p>
+<div class="highlight-python"><div class="highlight"><pre>spack install mpileaks ^mpich
+</pre></div>
+</div>
+<p>This forces spack to use some version of <tt class="docutils literal"><span class="pre">mpich</span></tt> for its
+implementation.  As always, you can be even more specific and require
+a particular <tt class="docutils literal"><span class="pre">mpich</span></tt> version:</p>
+<div class="highlight-python"><div class="highlight"><pre>spack install mpileaks ^mpich@3
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">mpileaks</span></tt> package in particular only needs MPI-1 commands, so
+any MPI implementation will do.  If another package depends on
+<tt class="docutils literal"><span class="pre">mpi&#64;2</span></tt> and you try to give it an insufficient MPI implementation
+(e.g., one that provides only <tt class="docutils literal"><span class="pre">mpi&#64;:1</span></tt>), then Spack will raise an
+error.  Likewise, if you try to plug in some package that doesn&#8217;t
+provide MPI, Spack will raise an error.</p>
+</div>
+<div class="section" id="spack-providers">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">providers</span></tt><a class="headerlink" href="#spack-providers" title="Permalink to this headline">¶</a></h3>
+<p>You can see what packages provide a particular virtual package using
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">providers</span></tt>.  If you wanted to see what packages provide
+<tt class="docutils literal"><span class="pre">mpi</span></tt>, you would just run:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack providers mpi
+    mpich@1:  mpich@3:  mvapich2@1.9  mvapich2@2.0  openmpi
+</pre></div>
+</div>
+<p>And if you <em>only</em> wanted to see packages that provide MPI-2, you would
+add a version specifier to the spec:</p>
+<div class="highlight-text"><div class="highlight"><pre>$ spack providers mpi@2
+    mpich@3:  mvapich2@1.9  mvapich2@2.0  openmpi
+</pre></div>
+</div>
+<p>Notice that the package versions that provide insufficient MPI
+versions are now filtered out.</p>
+</div>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="packaging_guide.html" class="btn btn-neutral float-right" title="Packaging Guide"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+    &copy; Copyright 2013-2014,
+    <a href="https://scalability.llnl.gov/">Lawrence Livermore National Laboratory</a>.
+    <br/>
+    Written by Todd Gamblin, <a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>, LLNL-CODE-647188
+    <br/>
+    Last updated on Oct 08, 2014.
+  &nbsp;&nbsp;
+  <br/><a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

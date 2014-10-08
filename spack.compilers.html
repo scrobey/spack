@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spack.compilers package &mdash; Spack 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'1.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Spack 1.0 documentation" href="index.html"/>
+        <link rel="up" title="spack package" href="spack.html"/>
+        <link rel="next" title="spack.hooks package" href="spack.hooks.html"/>
+        <link rel="prev" title="spack.cmd package" href="spack.cmd.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Spack</a>
+        <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="spack.html">API Docs</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">spack.compilers package</a></li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="_sources/spack.compilers.txt" rel="nofollow"> View page source</a>
+      
+    </li>
+</ul>
+<hr/>
+
+          
+  <div class="section" id="spack-compilers-package">
+<h1>spack.compilers package<a class="headerlink" href="#spack-compilers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-spack.compilers.clang">
+<span id="spack-compilers-clang-module"></span><h2>spack.compilers.clang module<a class="headerlink" href="#module-spack.compilers.clang" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.compilers.clang.Clang">
+<em class="property">class </em><tt class="descclassname">spack.compilers.clang.</tt><tt class="descname">Clang</tt><big>(</big><em>cspec</em>, <em>cc</em>, <em>cxx</em>, <em>f77</em>, <em>fc</em><big>)</big><a class="headerlink" href="#spack.compilers.clang.Clang" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="spack.html#spack.compiler.Compiler" title="spack.compiler.Compiler"><tt class="xref py py-class docutils literal"><span class="pre">spack.compiler.Compiler</span></tt></a></p>
+<dl class="attribute">
+<dt id="spack.compilers.clang.Clang.cc_names">
+<tt class="descname">cc_names</tt><em class="property"> = ['clang']</em><a class="headerlink" href="#spack.compilers.clang.Clang.cc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.clang.Clang.cxx_names">
+<tt class="descname">cxx_names</tt><em class="property"> = ['clang++']</em><a class="headerlink" href="#spack.compilers.clang.Clang.cxx_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="spack.compilers.clang.Clang.default_version">
+<em class="property">classmethod </em><tt class="descname">default_version</tt><big>(</big><em>comp</em><big>)</big><a class="headerlink" href="#spack.compilers.clang.Clang.default_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8216;&#8211;version&#8217; option works for clang compilers.
+Output looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>clang version 3.1 (trunk 149096)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.clang.Clang.f77_names">
+<tt class="descname">f77_names</tt><em class="property"> = []</em><a class="headerlink" href="#spack.compilers.clang.Clang.f77_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.clang.Clang.fc_names">
+<tt class="descname">fc_names</tt><em class="property"> = []</em><a class="headerlink" href="#spack.compilers.clang.Clang.fc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.compilers.gcc">
+<span id="spack-compilers-gcc-module"></span><h2>spack.compilers.gcc module<a class="headerlink" href="#module-spack.compilers.gcc" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.compilers.gcc.Gcc">
+<em class="property">class </em><tt class="descclassname">spack.compilers.gcc.</tt><tt class="descname">Gcc</tt><big>(</big><em>cspec</em>, <em>cc</em>, <em>cxx</em>, <em>f77</em>, <em>fc</em><big>)</big><a class="headerlink" href="#spack.compilers.gcc.Gcc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="spack.html#spack.compiler.Compiler" title="spack.compiler.Compiler"><tt class="xref py py-class docutils literal"><span class="pre">spack.compiler.Compiler</span></tt></a></p>
+<dl class="attribute">
+<dt id="spack.compilers.gcc.Gcc.cc_names">
+<tt class="descname">cc_names</tt><em class="property"> = ['gcc']</em><a class="headerlink" href="#spack.compilers.gcc.Gcc.cc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.gcc.Gcc.cxx11_flag">
+<tt class="descname">cxx11_flag</tt><a class="headerlink" href="#spack.compilers.gcc.Gcc.cxx11_flag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.gcc.Gcc.cxx_names">
+<tt class="descname">cxx_names</tt><em class="property"> = ['g++']</em><a class="headerlink" href="#spack.compilers.gcc.Gcc.cxx_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.gcc.Gcc.f77_names">
+<tt class="descname">f77_names</tt><em class="property"> = ['gfortran']</em><a class="headerlink" href="#spack.compilers.gcc.Gcc.f77_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="spack.compilers.gcc.Gcc.f77_version">
+<em class="property">classmethod </em><tt class="descname">f77_version</tt><big>(</big><em>f77</em><big>)</big><a class="headerlink" href="#spack.compilers.gcc.Gcc.f77_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.gcc.Gcc.fc_names">
+<tt class="descname">fc_names</tt><em class="property"> = ['gfortran']</em><a class="headerlink" href="#spack.compilers.gcc.Gcc.fc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="spack.compilers.gcc.Gcc.fc_version">
+<em class="property">classmethod </em><tt class="descname">fc_version</tt><big>(</big><em>fc</em><big>)</big><a class="headerlink" href="#spack.compilers.gcc.Gcc.fc_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.gcc.Gcc.suffixes">
+<tt class="descname">suffixes</tt><em class="property"> = ['-mp-\\d\\.\\d']</em><a class="headerlink" href="#spack.compilers.gcc.Gcc.suffixes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.compilers.intel">
+<span id="spack-compilers-intel-module"></span><h2>spack.compilers.intel module<a class="headerlink" href="#module-spack.compilers.intel" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.compilers.intel.Intel">
+<em class="property">class </em><tt class="descclassname">spack.compilers.intel.</tt><tt class="descname">Intel</tt><big>(</big><em>cspec</em>, <em>cc</em>, <em>cxx</em>, <em>f77</em>, <em>fc</em><big>)</big><a class="headerlink" href="#spack.compilers.intel.Intel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="spack.html#spack.compiler.Compiler" title="spack.compiler.Compiler"><tt class="xref py py-class docutils literal"><span class="pre">spack.compiler.Compiler</span></tt></a></p>
+<dl class="attribute">
+<dt id="spack.compilers.intel.Intel.cc_names">
+<tt class="descname">cc_names</tt><em class="property"> = ['icc']</em><a class="headerlink" href="#spack.compilers.intel.Intel.cc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.intel.Intel.cxx11_flag">
+<tt class="descname">cxx11_flag</tt><a class="headerlink" href="#spack.compilers.intel.Intel.cxx11_flag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.intel.Intel.cxx_names">
+<tt class="descname">cxx_names</tt><em class="property"> = ['icpc']</em><a class="headerlink" href="#spack.compilers.intel.Intel.cxx_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="spack.compilers.intel.Intel.default_version">
+<em class="property">classmethod </em><tt class="descname">default_version</tt><big>(</big><em>comp</em><big>)</big><a class="headerlink" href="#spack.compilers.intel.Intel.default_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8216;&#8211;version&#8217; option seems to be the most consistent one
+for intel compilers.  Output looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>icpc (ICC) 12.1.5 20120612
+Copyright (C) 1985-2012 Intel Corporation.  All rights reserved.
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre>ifort (IFORT) 12.1.5 20120612
+Copyright (C) 1985-2012 Intel Corporation.  All rights reserved.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.intel.Intel.f77_names">
+<tt class="descname">f77_names</tt><em class="property"> = ['ifort']</em><a class="headerlink" href="#spack.compilers.intel.Intel.f77_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.intel.Intel.fc_names">
+<tt class="descname">fc_names</tt><em class="property"> = ['ifort']</em><a class="headerlink" href="#spack.compilers.intel.Intel.fc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.compilers.pgi">
+<span id="spack-compilers-pgi-module"></span><h2>spack.compilers.pgi module<a class="headerlink" href="#module-spack.compilers.pgi" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.compilers.pgi.Pgi">
+<em class="property">class </em><tt class="descclassname">spack.compilers.pgi.</tt><tt class="descname">Pgi</tt><big>(</big><em>cspec</em>, <em>cc</em>, <em>cxx</em>, <em>f77</em>, <em>fc</em><big>)</big><a class="headerlink" href="#spack.compilers.pgi.Pgi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="spack.html#spack.compiler.Compiler" title="spack.compiler.Compiler"><tt class="xref py py-class docutils literal"><span class="pre">spack.compiler.Compiler</span></tt></a></p>
+<dl class="attribute">
+<dt id="spack.compilers.pgi.Pgi.cc_names">
+<tt class="descname">cc_names</tt><em class="property"> = ['pgcc']</em><a class="headerlink" href="#spack.compilers.pgi.Pgi.cc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.pgi.Pgi.cxx_names">
+<tt class="descname">cxx_names</tt><em class="property"> = ['pgCC']</em><a class="headerlink" href="#spack.compilers.pgi.Pgi.cxx_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="spack.compilers.pgi.Pgi.default_version">
+<em class="property">classmethod </em><tt class="descname">default_version</tt><big>(</big><em>comp</em><big>)</big><a class="headerlink" href="#spack.compilers.pgi.Pgi.default_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8216;-V&#8217; option works for all the PGI compilers.
+Output looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>pgf95 10.2-0 64-bit target on x86-64 Linux -tp nehalem-64
+Copyright 1989-2000, The Portland Group, Inc.  All Rights Reserved.
+Copyright 2000-2010, STMicroelectronics, Inc.  All Rights Reserved.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.pgi.Pgi.f77_names">
+<tt class="descname">f77_names</tt><em class="property"> = ['pgf77']</em><a class="headerlink" href="#spack.compilers.pgi.Pgi.f77_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="spack.compilers.pgi.Pgi.fc_names">
+<tt class="descname">fc_names</tt><em class="property"> = ['pgf95', 'pgf90']</em><a class="headerlink" href="#spack.compilers.pgi.Pgi.fc_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.compilers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spack.compilers" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions related to finding compilers on the
+system and configuring Spack to use multiple compilers.</p>
+<dl class="exception">
+<dt id="spack.compilers.InvalidCompilerConfigurationError">
+<em class="property">exception </em><tt class="descclassname">spack.compilers.</tt><tt class="descname">InvalidCompilerConfigurationError</tt><big>(</big><em>compiler_spec</em><big>)</big><a class="headerlink" href="#spack.compilers.InvalidCompilerConfigurationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="spack.html#spack.error.SpackError" title="spack.error.SpackError"><tt class="xref py py-class docutils literal"><span class="pre">spack.error.SpackError</span></tt></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="spack.compilers.NoCompilersError">
+<em class="property">exception </em><tt class="descclassname">spack.compilers.</tt><tt class="descname">NoCompilersError</tt><a class="headerlink" href="#spack.compilers.NoCompilersError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="spack.html#spack.error.SpackError" title="spack.error.SpackError"><tt class="xref py py-class docutils literal"><span class="pre">spack.error.SpackError</span></tt></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.add_compiler">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">add_compiler</tt><big>(</big><em>config</em>, <em>compiler</em><big>)</big><a class="headerlink" href="#spack.compilers.add_compiler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.add_compilers_to_config">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">add_compilers_to_config</tt><big>(</big><em>scope</em>, <em>*compilers</em><big>)</big><a class="headerlink" href="#spack.compilers.add_compilers_to_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.all_compiler_types">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">all_compiler_types</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.compilers.all_compiler_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.all_compilers">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">all_compilers</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.compilers.all_compilers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a set of specs for all the compiler versions currently
+available to build with.  These are instances of CompilerSpec.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.class_for_compiler_name">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">class_for_compiler_name</tt><big>(</big><em>compiler_name</em><big>)</big><a class="headerlink" href="#spack.compilers.class_for_compiler_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a compiler module name, get the corresponding Compiler class.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.compiler_for_spec">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">compiler_for_spec</tt><big>(</big><em>cspec_like</em><big>)</big><a class="headerlink" href="#spack.compilers.compiler_for_spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.compilers_for_spec">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">compilers_for_spec</tt><big>(</big><em>cspec_like</em><big>)</big><a class="headerlink" href="#spack.compilers.compilers_for_spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.default_compiler">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">default_compiler</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#spack.compilers.default_compiler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.find">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">find</tt><big>(</big><em>cspec_like</em><big>)</big><a class="headerlink" href="#spack.compilers.find" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.find_compilers">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">find_compilers</tt><big>(</big><em>*path</em><big>)</big><a class="headerlink" href="#spack.compilers.find_compilers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of compilers found in the suppied paths.
+This invokes the find() method for each Compiler class,
+and appends the compilers detected to a list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.supported">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">supported</tt><big>(</big><em>cspec_like</em><big>)</big><a class="headerlink" href="#spack.compilers.supported" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="spack.compilers.supported_compilers">
+<tt class="descclassname">spack.compilers.</tt><tt class="descname">supported_compilers</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.compilers.supported_compilers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a set of names of compilers supported by Spack.</p>
+<p>See available_compilers() to get a list of all the available
+versions of supported compilers.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="spack.hooks.html" class="btn btn-neutral float-right" title="spack.hooks package"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="spack.cmd.html" class="btn btn-neutral" title="spack.cmd package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+    &copy; Copyright 2013-2014,
+    <a href="https://scalability.llnl.gov/">Lawrence Livermore National Laboratory</a>.
+    <br/>
+    Written by Todd Gamblin, <a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>, LLNL-CODE-647188
+    <br/>
+    Last updated on Oct 08, 2014.
+  &nbsp;&nbsp;
+  <br/><a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

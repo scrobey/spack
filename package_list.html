@@ -1,0 +1,1478 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Package List &mdash; Spack 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'1.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Spack 1.0 documentation" href="index.html"/>
+        <link rel="next" title="spack package" href="spack.html"/>
+        <link rel="prev" title="Developer Guide" href="developer_guide.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Spack</a>
+        <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spack.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Package List</a></li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="_sources/package_list.txt" rel="nofollow"> View page source</a>
+      
+    </li>
+</ul>
+<hr/>
+
+          
+  <div class="section" id="package-list">
+<h1>Package List<a class="headerlink" href="#package-list" title="Permalink to this headline">¶</a></h1>
+<p>This is a list of things you can install using Spack.  It is
+automatically generated based on the packages in the latest Spack
+release.</p>
+<p>Spack currently has 56 mainline packages:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="19%" />
+<col width="16%" />
+<col width="26%" />
+<col width="18%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#adept-utils">adept-utils</a></td>
+<td><a class="reference internal" href="#hwloc">hwloc</a></td>
+<td><a class="reference internal" href="#lwgrp">lwgrp</a></td>
+<td><a class="reference internal" href="#papi">papi</a></td>
+<td><a class="reference internal" href="#sundials">sundials</a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#automaded">automaded</a></td>
+<td><a class="reference internal" href="#launchmon">launchmon</a></td>
+<td><a class="reference internal" href="#mpich">mpich</a></td>
+<td><a class="reference internal" href="#paraver">paraver</a></td>
+<td><a class="reference internal" href="#swig">swig</a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#boost">boost</a></td>
+<td><a class="reference internal" href="#libarchive">libarchive</a></td>
+<td><a class="reference internal" href="#mpileaks">mpileaks</a></td>
+<td><a class="reference internal" href="#parmetis">parmetis</a></td>
+<td><a class="reference internal" href="#tau">tau</a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#callpath">callpath</a></td>
+<td><a class="reference internal" href="#libcircle">libcircle</a></td>
+<td><a class="reference internal" href="#mrnet">mrnet</a></td>
+<td><a class="reference internal" href="#pmgr-collective">pmgr_collective</a></td>
+<td><a class="reference internal" href="#tmux">tmux</a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#clang">clang</a></td>
+<td><a class="reference internal" href="#libdwarf">libdwarf</a></td>
+<td><a class="reference internal" href="#mvapich2">mvapich2</a></td>
+<td><a class="reference internal" href="#postgresql">postgresql</a></td>
+<td><a class="reference internal" href="#vim">vim</a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#cmake">cmake</a></td>
+<td><a class="reference internal" href="#libelf">libelf</a></td>
+<td><a class="reference internal" href="#ncurses">ncurses</a></td>
+<td><a class="reference internal" href="#samrai">SAMRAI</a></td>
+<td><a class="reference internal" href="#wx">wx</a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#cube">cube</a></td>
+<td><a class="reference internal" href="#libevent">libevent</a></td>
+<td><a class="reference internal" href="#netgauge">netgauge</a></td>
+<td><a class="reference internal" href="#scalasca">scalasca</a></td>
+<td><a class="reference internal" href="#wxpropgrid">wxpropgrid</a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#dtcmp">dtcmp</a></td>
+<td><a class="reference internal" href="#libmonitor">libmonitor</a></td>
+<td><a class="reference internal" href="#ompss">ompss</a></td>
+<td><a class="reference internal" href="#scorep">scorep</a></td>
+<td><a class="reference internal" href="#zlib">zlib</a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#dyninst">dyninst</a></td>
+<td><a class="reference internal" href="#libnbc">libNBC</a></td>
+<td><a class="reference internal" href="#opari2">opari2</a></td>
+<td><a class="reference internal" href="#scr">scr</a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#extrae">extrae</a></td>
+<td><a class="reference internal" href="#libunwind">libunwind</a></td>
+<td><a class="reference internal" href="#openmpi">openmpi</a></td>
+<td><a class="reference internal" href="#spindle">spindle</a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#graphlib">graphlib</a></td>
+<td><a class="reference internal" href="#llvm">llvm</a></td>
+<td><a class="reference internal" href="#openssl">openssl</a></td>
+<td><a class="reference internal" href="#sqlite">sqlite</a></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#hdf5">hdf5</a></td>
+<td><a class="reference internal" href="#llvm-lld">llvm-lld</a></td>
+<td><a class="reference internal" href="#otf2">otf2</a></td>
+<td><a class="reference internal" href="#stat">stat</a></td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="section" id="adept-utils">
+<span id="id1"></span><h2>adept-utils<a class="headerlink" href="#adept-utils" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://github.com/scalability-llnl/adept-utils">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/adept-utils/package.py">adept-utils/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#boost">boost</a>, mpi</dd>
+<dt>Description</dt>
+<dd>Utility libraries for LLNL performance tools.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="automaded">
+<span id="id2"></span><h2>automaded<a class="headerlink" href="#automaded" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://github.com/scalability-llnl/AutomaDeD">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/automaded/package.py">automaded/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#boost">boost</a>, <a class="reference internal" href="#callpath">callpath</a>, mpi</dd>
+<dt>Description</dt>
+<dd>AutomaDeD (Automata-based Debugging for Dissimilar parallel tasks) is a
+tool for automatic diagnosis of performance and correctness problems in
+MPI applications. It creates control-flow models of each MPI process
+and, when a failure occurs, these models are leveraged to find the
+origin of problems automatically. MPI calls are intercepted (using
+wrappers) to create the models. When an MPI application hangs, AutomaDeD
+creates a progress-dependence graph that helps finding the process (or
+group of processes) that caused the hang.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="boost">
+<span id="id3"></span><h2>boost<a class="headerlink" href="#boost" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.boost.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/boost/package.py">boost/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.55.0, 1.54.0, 1.53.0, 1.52.0, 1.51.0, 1.50.0, 1.49.0, 1.48.0, 1.47.0, 1.46.1, 1.46.0, 1.45.0, 1.44.0, 1.43.0, 1.42.0, 1.41.0, 1.40.0, 1.39.0, 1.38.0, 1.37.0, 1.36.0, 1.35.0, 1.34.1, 1.34.0</dd>
+<dt>Description</dt>
+<dd>Boost provides free peer-reviewed portable C++ source libraries,
+emphasizing libraries that work well with the C++ Standard Library.
+Boost libraries are intended to be widely useful, and usable across a
+broad spectrum of applications. The Boost license encourages both
+commercial and non-commercial use.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="callpath">
+<span id="id4"></span><h2>callpath<a class="headerlink" href="#callpath" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://github.com/scalability-llnl/callpath">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/callpath/package.py">callpath/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0.2, 1.0.1</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#dyninst">dyninst</a>, mpi, <a class="reference internal" href="#adept-utils">adept-utils</a></dd>
+<dt>Description</dt>
+<dd>Library for representing callpaths consistently in distributed-memory
+performance tools.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="clang">
+<span id="id5"></span><h2>clang<a class="headerlink" href="#clang" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://clang.llvm.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/clang/package.py">clang/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.4.2</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#llvm">llvm</a></dd>
+<dt>Description</dt>
+<dd>The goal of the Clang project is to create a new C, C++, Objective C and
+Objective C++ front-end for the LLVM compiler.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="cmake">
+<span id="id6"></span><h2>cmake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://www.cmake.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cmake/package.py">cmake/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.8.10.2</dd>
+<dt>Description</dt>
+<dd>A cross-platform, open-source build system. CMake is a family of tools
+designed to build, test and package software.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="cube">
+<span id="id7"></span><h2>cube<a class="headerlink" href="#cube" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.scalasca.org/software/cube-4.x/download.html">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cube/package.py">cube/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>4.3TP1, 4.2.3</dd>
+<dt>Description</dt>
+<dd>Cube the profile viewer for Score-P and Scalasca profiles. It displays a
+multi-dimensional performance space consisting of the dimensions (i)
+performance metric, (ii) call path, and (iii) system resource.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="dtcmp">
+<span id="id8"></span><h2>dtcmp<a class="headerlink" href="#dtcmp" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://github.com/hpc/dtcmp">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dtcmp/package.py">dtcmp/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0.3</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#lwgrp">lwgrp</a>, mpi</dd>
+<dt>Description</dt>
+<dd>The Datatype Comparison Library provides comparison operations and
+parallel sort algorithms for MPI applications.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="dyninst">
+<span id="id9"></span><h2>dyninst<a class="headerlink" href="#dyninst" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://paradyn.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dyninst/package.py">dyninst/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>8.1.2, 8.1.1</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#boost">boost</a>, <a class="reference internal" href="#libelf">libelf</a>, <a class="reference internal" href="#libdwarf">libdwarf</a></dd>
+<dt>Description</dt>
+<dd>API for dynamic binary instrumentation. Modify programs while they are
+executing without recompiling, re-linking, or re-executing.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="extrae">
+<span id="id10"></span><h2>extrae<a class="headerlink" href="#extrae" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.bsc.es/computer-sciences/extrae">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/extrae/package.py">extrae/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.5.1</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#papi">papi</a>, <a class="reference internal" href="#dyninst">dyninst</a>, <a class="reference internal" href="#openmpi">openmpi</a>, <a class="reference internal" href="#libunwind">libunwind</a>, <a class="reference internal" href="#boost">boost</a>, <a class="reference internal" href="#libdwarf">libdwarf</a></dd>
+<dt>Description</dt>
+<dd>Extrae is the package devoted to generate tracefiles which can be
+analyzed later by Paraver. Extrae is a tool that uses different
+interposition mechanisms to inject probes into the target application so
+as to gather information regarding the application performance. The
+Extrae instrumentation package can instrument the MPI programin model,
+and the following parallel programming models either alone or in
+conjunction with MPI : OpenMP, CUDA, OpenCL, pthread, OmpSs</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="graphlib">
+<span id="id11"></span><h2>graphlib<a class="headerlink" href="#graphlib" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://https://github.com/lee218llnl/graphlib">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/graphlib/package.py">graphlib/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.0.0</dd>
+<dt>Description</dt>
+<dd>Library to create, manipulate, and export graphs Graphlib.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="hdf5">
+<span id="id12"></span><h2>hdf5<a class="headerlink" href="#hdf5" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.hdfgroup.org/HDF5/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/hdf5/package.py">hdf5/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.8.13</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#zlib">zlib</a>, mpi</dd>
+<dt>Description</dt>
+<dd>HDF5 is a data model, library, and file format for storing and managing
+data. It supports an unlimited variety of datatypes, and is designed for
+flexible and efficient I/O and for high volume and complex data.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="hwloc">
+<span id="id13"></span><h2>hwloc<a class="headerlink" href="#hwloc" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.open-mpi.org/projects/hwloc/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/hwloc/package.py">hwloc/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.9</dd>
+<dt>Description</dt>
+<dd>The Portable Hardware Locality (hwloc) software package provides a
+portable abstraction (across OS, versions, architectures, ...) of the
+hierarchical topology of modern architectures, including NUMA memory
+nodes, sockets, shared caches, cores and simultaneous multithreading. It
+also gathers various system attributes such as cache and memory
+information as well as the locality of I/O devices such as network
+interfaces, InfiniBand HCAs or GPUs. It primarily aims at helping
+applications with gathering information about modern computing hardware
+so as to exploit it accordingly and efficiently.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="launchmon">
+<span id="id14"></span><h2>launchmon<a class="headerlink" href="#launchmon" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://sourceforge.net/projects/launchmon">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/launchmon/package.py">launchmon/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0.1</dd>
+<dt>Description</dt>
+<dd>Software infrastructure that enables HPC run-time tools to co-locate
+tool daemons with a parallel job.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libarchive">
+<span id="id15"></span><h2>libarchive<a class="headerlink" href="#libarchive" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.libarchive.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libarchive/package.py">libarchive/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.1.2, 3.1.1, 3.1.0</dd>
+<dt>Description</dt>
+<dd>libarchive: C library and command-line tools for reading and writing
+tar, cpio, zip, ISO, and other archive formats.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libcircle">
+<span id="id16"></span><h2>libcircle<a class="headerlink" href="#libcircle" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://github.com/hpc/libcircle">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libcircle/package.py">libcircle/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>0.2.1-rc.1</dd>
+<dt>Dependencies</dt>
+<dd>mpi</dd>
+<dt>Description</dt>
+<dd>libcircle provides an efficient distributed queue on a cluster, using
+self-stabilizing work stealing.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libdwarf">
+<span id="id17"></span><h2>libdwarf<a class="headerlink" href="#libdwarf" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.prevanders.net/dwarf.html">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libdwarf/package.py">libdwarf/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>20130729, 20130207, 20130126</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#libelf">libelf</a></dd>
+<dt>Description</dt>
+<dd>The DWARF Debugging Information Format is of interest to programmers
+working on compilers and debuggers (and any one interested in reading or
+writing DWARF information). It was developed by a committee (known as
+the PLSIG at the time) starting around 1991. Starting around 1991 SGI
+developed the libdwarf and dwarfdump tools for internal use and as part
+of SGI IRIX developer tools. Since that time dwarfdump and libdwarf have
+been shipped (as an executable and archive respectively, not source)
+with every release of the SGI MIPS/IRIX C compiler.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libelf">
+<span id="id18"></span><h2>libelf<a class="headerlink" href="#libelf" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.mr511.de/software/english.html">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libelf/package.py">libelf/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>0.8.13, 0.8.12</dd>
+<dt>Description</dt>
+<dd>libelf lets you read, modify or create ELF object files in an
+architecture-independent way. The library takes care of size and endian
+issues, e.g. you can process a file for SPARC processors on an Intel-
+based system.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libevent">
+<span id="id19"></span><h2>libevent<a class="headerlink" href="#libevent" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://libevent.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libevent/package.py">libevent/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.0.21, 2.0.20, 2.0.19, 2.0.18, 2.0.17, 2.0.16, 2.0.15, 2.0.14, 2.0.13, 2.0.12</dd>
+<dt>Description</dt>
+<dd>The libevent API provides a mechanism to execute a callback function
+when a specific event occurs on a file descriptor or after a timeout has
+been reached. Furthermore, libevent also support callbacks due to
+signals or regular timeouts.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libmonitor">
+<span id="id20"></span><h2>libmonitor<a class="headerlink" href="#libmonitor" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://hpctoolkit.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libmonitor/package.py">libmonitor/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>20130218</dd>
+<dt>Description</dt>
+<dd>Libmonitor is a library for process and thread control.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libnbc">
+<span id="id21"></span><h2>libNBC<a class="headerlink" href="#libnbc" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://unixer.de/research/nbcoll/libnbc/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libNBC/package.py">libNBC/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.1.1</dd>
+<dt>Dependencies</dt>
+<dd>mpi</dd>
+<dt>Description</dt>
+<dd>LibNBC is a prototypic implementation of a nonblocking interface for MPI
+collective operations. Based on ANSI C and MPI-1, it supports all MPI-1
+collective operations in a nonblocking manner. LibNBC is distributed
+under the BSD license.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="libunwind">
+<span id="id22"></span><h2>libunwind<a class="headerlink" href="#libunwind" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.nongnu.org/libunwind/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libunwind/package.py">libunwind/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.1</dd>
+<dt>Description</dt>
+<dd>A portable and efficient C programming interface (API) to determine the
+call-chain of a program.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="llvm">
+<span id="id23"></span><h2>llvm<a class="headerlink" href="#llvm" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://llvm.org/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/llvm/package.py">llvm/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.4.2</dd>
+<dt>Description</dt>
+<dd>The LLVM Project is a collection of modular and reusable compiler and
+toolchain technologies. Despite its name, LLVM has little to do with
+traditional virtual machines, though it does provide helpful libraries
+that can be used to build them. The name &#8220;LLVM&#8221; itself is not an
+acronym; it is the full name of the project.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="llvm-lld">
+<span id="id24"></span><h2>llvm-lld<a class="headerlink" href="#llvm-lld" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://lld.llvm.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/llvm-lld/package.py">llvm-lld/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.4</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#llvm">llvm</a></dd>
+<dt>Description</dt>
+<dd>lld - The LLVM Linker lld is a new set of modular code for creating
+linker tools.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="lwgrp">
+<span id="id25"></span><h2>lwgrp<a class="headerlink" href="#lwgrp" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://github.com/hpc/lwgrp">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/lwgrp/package.py">lwgrp/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0.2</dd>
+<dt>Dependencies</dt>
+<dd>mpi</dd>
+<dt>Description</dt>
+<dd>Thie light-weight group library provides process group representations
+using O(log N) space and time.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="mpich">
+<span id="id26"></span><h2>mpich<a class="headerlink" href="#mpich" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.mpich.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpich/package.py">mpich/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.0.4</dd>
+<dt>Description</dt>
+<dd>MPICH is a high performance and widely portable implementation of the
+Message Passing Interface (MPI) standard.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="mpileaks">
+<span id="id27"></span><h2>mpileaks<a class="headerlink" href="#mpileaks" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://github.com/hpc/mpileaks">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpileaks/package.py">mpileaks/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#adept-utils">adept-utils</a>, <a class="reference internal" href="#callpath">callpath</a>, mpi</dd>
+<dt>Description</dt>
+<dd>Tool to detect and report leaked MPI objects like MPI_Requests and
+MPI_Datatypes.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="mrnet">
+<span id="id28"></span><h2>mrnet<a class="headerlink" href="#mrnet" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://paradyn.org/mrnet">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mrnet/package.py">mrnet/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>4.1.0, 4.0.0</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#boost">boost</a></dd>
+<dt>Description</dt>
+<dd>The MRNet Multi-Cast Reduction Network.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="mvapich2">
+<span id="id29"></span><h2>mvapich2<a class="headerlink" href="#mvapich2" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://mvapich.cse.ohio-state.edu/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mvapich2/package.py">mvapich2/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.0, 1.9</dd>
+<dt>Description</dt>
+<dd>mvapich2 is an MPI implmenetation for infiniband networks.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="ncurses">
+<span id="id30"></span><h2>ncurses<a class="headerlink" href="#ncurses" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://invisible-island.net/ncurses/ncurses.html">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ncurses/package.py">ncurses/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>5.9</dd>
+<dt>Description</dt>
+<dd>The ncurses (new curses) library is a free software emulation of curses
+in System V Release 4.0, and more. It uses terminfo format, supports
+pads and color and multiple highlights and forms characters and
+function-key mapping, and has all the other SYSV-curses enhancements
+over BSD curses.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="netgauge">
+<span id="id31"></span><h2>netgauge<a class="headerlink" href="#netgauge" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://unixer.de/research/netgauge/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/netgauge/package.py">netgauge/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.4.6</dd>
+<dt>Dependencies</dt>
+<dd>mpi</dd>
+<dt>Description</dt>
+<dd>Netgauge is a high-precision network parameter measurement tool. It
+supports benchmarking of many different network protocols and
+communication patterns. The main focus lies on accuracy, statistical
+analysis and easy extensibility.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="ompss">
+<span id="id32"></span><h2>ompss<a class="headerlink" href="#ompss" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://pm.bsc.es/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ompss/package.py">ompss/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>14.06</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#hwloc">hwloc</a>, <a class="reference internal" href="#extrae">extrae</a>, mpi</dd>
+<dt>Description</dt>
+<dd>OmpSs is an effort to integrate features from the StarSs programming
+model developed by BSC into a single programming model. In particular,
+our objective is to extend OpenMP with new directives to support
+asynchronous parallelism and heterogeneity (devices like GPUs). However,
+it can also be understood as new directives extending other accelerator
+based APIs like CUDA or OpenCL. Our OmpSs environment is built on top of
+our Mercurium compiler and Nanos++ runtime system.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="opari2">
+<span id="id33"></span><h2>opari2<a class="headerlink" href="#opari2" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.vi-hps.org/projects/score-p">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/opari2/package.py">opari2/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.1.2</dd>
+<dt>Description</dt>
+<dd>OPARI2 is a source-to-source instrumentation tool for OpenMP and hybrid
+codes. It surrounds OpenMP directives and runtime library calls with
+calls to the POMP2 measurement interface. OPARI2 will provide you with a
+new initialization method that allows for multi-directory and parallel
+builds as well as the usage of pre-instrumented libraries. Furthermore,
+an efficient way of tracking parent-child relationships was added.
+Additionally, we extended OPARI2 to support instrumentation of OpenMP
+3.0 tied tasks.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="openmpi">
+<span id="id34"></span><h2>openmpi<a class="headerlink" href="#openmpi" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.open-mpi.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/openmpi/package.py">openmpi/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.8.2, 1.6.5</dd>
+<dt>Description</dt>
+<dd>Open MPI is a project combining technologies and resources from several
+other projects (FT-MPI, LA-MPI, LAM/MPI, and PACX-MPI) in order to build
+the best MPI library available. A completely new MPI-2 compliant
+implementation, Open MPI offers advantages for system and software
+vendors, application developers and computer science researchers.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="openssl">
+<span id="id35"></span><h2>openssl<a class="headerlink" href="#openssl" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.openssl.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/openssl/package.py">openssl/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0.1h</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#zlib">zlib</a></dd>
+<dt>Description</dt>
+<dd>The OpenSSL Project is a collaborative effort to develop a robust,
+commercial-grade, full-featured, and Open Source toolkit implementing
+the Secure Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS
+v1) protocols as well as a full-strength general purpose cryptography
+library.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="otf2">
+<span id="id36"></span><h2>otf2<a class="headerlink" href="#otf2" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.vi-hps.org/score-p">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/otf2/package.py">otf2/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.4, 1.3.1, 1.2.1</dd>
+<dt>Description</dt>
+<dd>The Open Trace Format 2 is a highly scalable, memory efficient event
+trace data format plus support library.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="papi">
+<span id="id37"></span><h2>papi<a class="headerlink" href="#papi" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://icl.cs.utk.edu/papi/index.html">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/papi/package.py">papi/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>5.3.0</dd>
+<dt>Description</dt>
+<dd>PAPI provides the tool designer and application engineer with a
+consistent interface and methodology for use of the performance counter
+hardware found in most major microprocessors. PAPI enables software
+engineers to see, in near real time, the relation between software
+performance and processor events. In addition Component PAPI provides
+access to a collection of components that expose performance measurement
+opportunites across the hardware and software stack.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="paraver">
+<span id="id38"></span><h2>paraver<a class="headerlink" href="#paraver" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.bsc.es/computer-sciences/performance-tools/paraver">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/paraver/package.py">paraver/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>4.5.2</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#wxpropgrid">wxpropgrid</a>, <a class="reference internal" href="#boost">boost</a>, <a class="reference internal" href="#wx">wx</a></dd>
+<dt>Description</dt>
+<dd>&#8220;A very powerful performance visualization and analysis tool based on
+traces that can be used to analyse any information that is expressed on
+its input trace format. Traces for parallel MPI, OpenMP and other
+programs can be genereated with Extrae.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="parmetis">
+<span id="id39"></span><h2>parmetis<a class="headerlink" href="#parmetis" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/parmetis/package.py">parmetis/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>4.0.3</dd>
+<dt>Dependencies</dt>
+<dd>mpi</dd>
+<dt>Description</dt>
+<dd>ParMETIS is an MPI-based parallel library that implements a variety of
+algorithms for partitioning unstructured graphs, meshes, and for
+computing fill-reducing orderings of sparse matrices.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="pmgr-collective">
+<span id="id40"></span><h2>pmgr_collective<a class="headerlink" href="#pmgr-collective" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.sourceforge.net/projects/pmgrcollective">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pmgr_collective/package.py">pmgr_collective/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.0</dd>
+<dt>Description</dt>
+<dd>PMGR_COLLECTIVE provides a scalable network for bootstrapping MPI jobs.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="postgresql">
+<span id="id41"></span><h2>postgresql<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.postgresql.org/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/postgresql/package.py">postgresql/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>9.3.4</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#openssl">openssl</a></dd>
+<dt>Description</dt>
+<dd>PostgreSQL is a powerful, open source object-relational database system.
+It has more than 15 years of active development and a proven
+architecture that has earned it a strong reputation for reliability,
+data integrity, and correctness.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="samrai">
+<span id="id42"></span><h2>SAMRAI<a class="headerlink" href="#samrai" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://computation-rnd.llnl.gov/SAMRAI/confirm.php">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/SAMRAI/package.py">SAMRAI/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.7.3, 3.7.2, 3.6.3-beta, 3.5.2-beta, 3.5.0-beta, 3.4.1-beta, 3.3.3-beta, 3.3.2-beta, 2.4.4</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#zlib">zlib</a>, <a class="reference internal" href="#boost">boost</a>, <a class="reference internal" href="#hdf5">hdf5</a>, mpi</dd>
+<dt>Description</dt>
+<dd>SAMRAI (Structured Adaptive Mesh Refinement Application Infrastructure)
+is an object-oriented C++ software library enables exploration of
+numerical, algorithmic, parallel computing, and software issues
+associated with applying structured adaptive mesh refinement (SAMR)
+technology in large-scale parallel application development.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="scalasca">
+<span id="id43"></span><h2>scalasca<a class="headerlink" href="#scalasca" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.scalasca.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scalasca/package.py">scalasca/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.1-rc2</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#otf2">otf2</a>, <a class="reference internal" href="#cube">cube</a>, mpi</dd>
+<dt>Description</dt>
+<dd>Scalasca is a software tool that supports the performance optimization
+of parallel programs by measuring and analyzing their runtime behavior.
+The analysis identifies potential performance bottlenecks - in
+particular those concerning communication and synchronization - and
+offers guidance in exploring their causes.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="scorep">
+<span id="id44"></span><h2>scorep<a class="headerlink" href="#scorep" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.vi-hps.org/projects/score-p">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scorep/package.py">scorep/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.3, 1.2.3</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#otf2">otf2</a>, <a class="reference internal" href="#cube">cube</a>, <a class="reference internal" href="#opari2">opari2</a>, <a class="reference internal" href="#papi">papi</a>, mpi</dd>
+<dt>Description</dt>
+<dd>The Score-P measurement infrastructure is a highly scalable and easy-to-
+use tool suite for profiling, event tracing, and online analysis of HPC
+applications.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="scr">
+<span id="id45"></span><h2>scr<a class="headerlink" href="#scr" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://computation-rnd.llnl.gov/scr">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scr/package.py">scr/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.1-7</dd>
+<dt>Dependencies</dt>
+<dd>mpi</dd>
+<dt>Description</dt>
+<dd>SCR caches checkpoint data in storage on the compute nodes of a Linux
+cluster to provide a fast, scalable checkpoint/restart capability for
+MPI codes</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="spindle">
+<span id="id46"></span><h2>spindle<a class="headerlink" href="#spindle" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://computation-rnd.llnl.gov/spindle">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/spindle/package.py">spindle/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>0.8.1</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#launchmon">launchmon</a></dd>
+<dt>Description</dt>
+<dd>Spindle improves the library-loading performance of dynamically linked
+HPC applications. Without Spindle large MPI jobs can overload on a
+shared file system when loading dynamically linked libraries, causing
+site-wide performance problems.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="sqlite">
+<span id="id47"></span><h2>sqlite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="www.sqlite.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/sqlite/package.py">sqlite/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.8.5</dd>
+<dt>Description</dt>
+<dd>SQLite3 is an SQL database engine in a C library. Programs that link the
+SQLite3 library can have SQL database access without running a separate
+RDBMS process.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="stat">
+<span id="id48"></span><h2>stat<a class="headerlink" href="#stat" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://paradyn.org/STAT/STAT.html">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/stat/package.py">stat/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.1.0, 2.0.0</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#launchmon">launchmon</a>, <a class="reference internal" href="#graphlib">graphlib</a>, <a class="reference internal" href="#dyninst">dyninst</a>, <a class="reference internal" href="#mrnet">mrnet</a>, <a class="reference internal" href="#libdwarf">libdwarf</a></dd>
+<dt>Description</dt>
+<dd>Library to create, manipulate, and export graphs Graphlib.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="sundials">
+<span id="id49"></span><h2>sundials<a class="headerlink" href="#sundials" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://computation.llnl.gov/casc/sundials/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/sundials/package.py">sundials/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.5.0</dd>
+<dt>Dependencies</dt>
+<dd>mpi</dd>
+<dt>Description</dt>
+<dd>SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation
+Solvers)</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="swig">
+<span id="id50"></span><h2>swig<a class="headerlink" href="#swig" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.swig.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/swig/package.py">swig/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.0.2</dd>
+<dt>Description</dt>
+<dd>SWIG is an interface compiler that connects programs written in C and
+C++ with scripting languages such as Perl, Python, Ruby, and Tcl. It
+works by taking the declarations found in C/C++ header files and using
+them to generate the wrapper code that scripting languages need to
+access the underlying C/C++ code. In addition, SWIG provides a variety
+of customization features that let you tailor the wrapping process to
+suit your application.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="tau">
+<span id="id51"></span><h2>tau<a class="headerlink" href="#tau" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.cs.uoregon.edu/research/tau">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tau/package.py">tau/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>2.23.1</dd>
+<dt>Description</dt>
+<dd>A portable profiling and tracing toolkit for performance analysis of
+parallel programs written in Fortran, C, C++, UPC, Java, Python.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="tmux">
+<span id="id52"></span><h2>tmux<a class="headerlink" href="#tmux" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://tmux.sourceforge.net">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tmux/package.py">tmux/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.9a</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#ncurses">ncurses</a>, <a class="reference internal" href="#libevent">libevent</a></dd>
+<dt>Description</dt>
+<dd>tmux is a terminal multiplexer. What is a terminal multiplexer? It lets
+you switch easily between several programs in one terminal, detach them
+(they keep running in the background) and reattach them to a different
+terminal. And do a lot more.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="vim">
+<span id="id53"></span><h2>vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.vim.org">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/vim/package.py">vim/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>7.4, 7.3, 7.2, 7.1, 7.0, 6.4, 6.3, 6.2, 6.1.405, 6.1, 6.0</dd>
+<dt>Description</dt>
+<dd>Vim is a highly configurable text editor built to enable efficient text
+editing. It is an improved version of the vi editor distributed with
+most UNIX systems. Vim is often called a &#8220;programmer&#8217;s editor,&#8221; and so
+useful for programming that many consider it an entire IDE. It&#8217;s not
+just for programmers, though. Vim is perfect for all kinds of text
+editing, from composing email to editing configuration files.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="wx">
+<span id="id54"></span><h2>wx<a class="headerlink" href="#wx" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.wxwidgets.org/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/wx/package.py">wx/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>3.0.1, 2.8.12</dd>
+<dt>Description</dt>
+<dd>wxWidgets is a C++ library that lets developers create applications for
+Windows, Mac OS X, Linux and other platforms with a single code base. It
+has popular language bindings for Python, Perl, Ruby and many other
+languages, and unlike other cross-platform toolkits, wxWidgets gives
+applications a truly native look and feel because it uses the platform&#8217;s
+native API rather than emulating the GUI. It&#8217;s also extensive, free,
+open-source and mature.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="wxpropgrid">
+<span id="id55"></span><h2>wxpropgrid<a class="headerlink" href="#wxpropgrid" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://wxpropgrid.sourceforge.net/">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/wxpropgrid/package.py">wxpropgrid/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.4.15</dd>
+<dt>Dependencies</dt>
+<dd><a class="reference internal" href="#wx">wx</a></dd>
+<dt>Description</dt>
+<dd>wxPropertyGrid is a property sheet control for wxWidgets. In other
+words, it is a specialized two-column grid for editing properties such
+as strings, numbers, flagsets, string arrays, and colours.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+<div class="section" id="zlib">
+<span id="id56"></span><h2>zlib<a class="headerlink" href="#zlib" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Links</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://zlib.net">Homepage</a></li>
+<li><a class="reference external" href="https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/zlib/package.py">zlib/package.py</a></li>
+</ul>
+</dd>
+<dt>Versions:</dt>
+<dd>1.2.8</dd>
+<dt>Description</dt>
+<dd>zlib is designed to be a free, general-purpose, legally unencumbered &#8211;
+that is, not covered by any patents &#8211; lossless data-compression library
+for use on virtually any computer hardware and operating system.</dd>
+</dl>
+<hr class="docutils" />
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="spack.html" class="btn btn-neutral float-right" title="spack package"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="developer_guide.html" class="btn btn-neutral" title="Developer Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+    &copy; Copyright 2013-2014,
+    <a href="https://scalability.llnl.gov/">Lawrence Livermore National Laboratory</a>.
+    <br/>
+    Written by Todd Gamblin, <a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>, LLNL-CODE-647188
+    <br/>
+    Last updated on Oct 08, 2014.
+  &nbsp;&nbsp;
+  <br/><a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

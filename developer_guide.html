@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Guide &mdash; Spack 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'1.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Spack 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Package List" href="package_list.html"/>
+        <link rel="prev" title="Site-specific configuration" href="site_configuration.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Spack</a>
+        <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spack.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Developer Guide</a></li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="_sources/developer_guide.txt" rel="nofollow"> View page source</a>
+      
+    </li>
+</ul>
+<hr/>
+
+          
+  <div class="section" id="developer-guide">
+<span id="id1"></span><h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide is intended for people who want to work on Spack itself.
+If you just want to develop pacakges, see the <a class="reference internal" href="packaging_guide.html#packaging-guide"><em>Packaging Guide</em></a>.</p>
+<p>It is assumed that you&#8217;ve read the <a class="reference internal" href="basic_usage.html#basic-usage"><em>Basic usage</em></a> and
+<a class="reference internal" href="packaging_guide.html#packaging-guide"><em>Packaging Guide</em></a> sections, and that you&#8217;re familiar with the
+concepts discussed there.  If you&#8217;re not, we recommend reading those
+first.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Spack is designed with three separate roles in mind:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><strong>Users</strong>, who need to install software <em>without</em> knowing all the
+details about how it is built.</li>
+<li><strong>Packagers</strong> who know how a particular software package is
+built and encode this information in package files.</li>
+<li><strong>Developers</strong> who work on Spack, add new features, and try to
+make the jobs of packagers and users easier.</li>
+</ol>
+</div></blockquote>
+<p>Users could be end users installing software in their home directory,
+or administrators installing software to a shared directory on a
+shared machine.  Packagers could be administrators who want to
+automate software builds, or application developers who want to make
+their software more accessible to users.</p>
+<p>As you might expect, there are many types of users with different
+levels of sophistication, and Spack is designed to accommodate both
+simple and complex use cases for packages.  A user who only knows that
+he needs a certain package should be able to type something simple,
+like <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span> <span class="pre">&lt;package</span> <span class="pre">name&gt;</span></tt>, and get the package that he
+wants.  If a user wants to ask for a specific version, use particular
+compilers, or build several versions with different configurations,
+then that should be possible with a minimal amount of additional
+specification.</p>
+<p>This gets us to the two key concepts in Spack&#8217;s software design:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><strong>Specs</strong>: expressions for describing builds of software, and</li>
+<li><strong>Packages</strong>: Python modules that build software according to a
+spec.</li>
+</ol>
+</div></blockquote>
+<p>A package is a template for building particular software, and a spec
+as a descriptor for one or more instances of that template.  Users
+express the configuration they want using a spec, and a package turns
+the spec into a complete build.</p>
+<p>The obvious difficulty with this design is that users underspecify
+what they want.  To build a software package, the package object needs
+a <em>complete</em> specification.  In Spack, if a spec describes only one
+instance of a package, then we say it is <strong>concrete</strong>.  If a spec
+could describes many instances, (i.e. it is underspecified in one way
+or another), then we say it is <strong>abstract</strong>.</p>
+<p>Spack&#8217;s job is to take an <em>abstract</em> spec from the user, find a
+<em>concrete</em> spec that satisfies the constraints, and hand the task of
+building the software off to the package object.  The rest of this
+document describes all the pieces that come together to make that
+happen.</p>
+</div>
+<div class="section" id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>So that you can familiarize yourself with the project, we&#8217;ll start
+with a high level view of Spack&#8217;s directory structure:</p>
+<div class="highlight-python"><div class="highlight"><pre>spack/                  &lt;- installation root
+   bin/
+      spack             &lt;- main spack executable
+   var/
+      spack/            &lt;- build &amp; stage directories
+   opt/
+      spack/            &lt;- packages are installed here
+   lib/
+      spack/
+         docs/          &lt;- source for this documentation
+         env/           &lt;- compiler wrappers for build environment
+
+         spack/         &lt;- spack module; contains Python code
+            cmd/        &lt;- each file in here is a spack subcommand
+            compilers/  &lt;- compiler description files
+            packages/   &lt;- each file in here is a spack package
+            test/       &lt;- unit test modules
+            util/       &lt;- common code
+</pre></div>
+</div>
+<p>Spack is designed so that it could live within a <a class="reference external" href="http://linux.die.net/man/7/hier">standard UNIX
+directory hierarchy</a>, so <tt class="docutils literal"><span class="pre">lib</span></tt>,
+<tt class="docutils literal"><span class="pre">var</span></tt>, and <tt class="docutils literal"><span class="pre">opt</span></tt> all contain a <tt class="docutils literal"><span class="pre">spack</span></tt> subdirectory in case
+Spack is installed alongside other software.  Most of the insteresting
+parts of Spack live in <tt class="docutils literal"><span class="pre">lib/spack</span></tt>.  Files under <tt class="docutils literal"><span class="pre">var</span></tt> are created
+as needed, so there is no <tt class="docutils literal"><span class="pre">var</span></tt> directory when you initially clone
+Spack from the repository.</p>
+<p>Spack has <em>one</em> directory layout and there is no install process.
+version and the source code.  Most Python programs don&#8217;t look like
+this (they use distutils, <tt class="docutils literal"><span class="pre">setup.py</span></tt>, etc.) but we wanted to make
+Spack <em>very</em> easy to use.  The simple layout spares users from the
+need to install Spack into a Python environment.  Many users don&#8217;t
+have write access to a Python installation, and installing an entire
+new instance of Python to bootstrap Spack would be very complicated.
+Users should not have to install install a big, complicated package to
+use the thing that&#8217;s supposed to spare them from the details of big,
+complicated packages.  The end result is that Spack works out of the
+box: clone it and add <tt class="docutils literal"><span class="pre">bin</span></tt> to your PATH and you&#8217;re ready to go.</p>
+</div>
+<div class="section" id="code-structure">
+<h2>Code Structure<a class="headerlink" href="#code-structure" title="Permalink to this headline">¶</a></h2>
+<p>This section gives an overview of the various Python modules in Spack,
+grouped by functionality.</p>
+<div class="section" id="package-related-modules">
+<h3>Package-related modules<a class="headerlink" href="#package-related-modules" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><a class="reference internal" href="spack.html#module-spack.package" title="spack.package"><tt class="xref py py-mod docutils literal"><span class="pre">spack.package</span></tt></a></dt>
+<dd>Contains the <a class="reference internal" href="spack.html#spack.package.Package" title="spack.package.Package"><tt class="xref py py-class docutils literal"><span class="pre">Package</span></tt></a> class, which
+is the superclass for all packages in Spack.  Methods on <tt class="docutils literal"><span class="pre">Package</span></tt>
+implement all phases of the <a class="reference internal" href="packaging_guide.html#pacakge-lifecycle"><em>package lifecycle</em></a> and manage the build process.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.packages" title="spack.packages"><tt class="xref py py-mod docutils literal"><span class="pre">spack.packages</span></tt></a></dt>
+<dd>Contains all of the packages in Spack and methods for managing them.
+Functions like <tt class="xref py py-func docutils literal"><span class="pre">packages.get</span></tt> and
+<tt class="xref py py-func docutils literal"><span class="pre">class_name_for_package_name</span></tt> handle mapping packge module
+names to class names and dynamically instantiating packages by name
+from module files.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.relations" title="spack.relations"><tt class="xref py py-mod docutils literal"><span class="pre">spack.relations</span></tt></a></dt>
+<dd><em>Relations</em> are relationships between packages, like
+<a class="reference internal" href="spack.html#spack.relations.depends_on" title="spack.relations.depends_on"><tt class="xref py py-func docutils literal"><span class="pre">depends_on</span></tt></a> and <a class="reference internal" href="spack.html#spack.relations.provides" title="spack.relations.provides"><tt class="xref py py-func docutils literal"><span class="pre">provides</span></tt></a>.  See <a class="reference internal" href="packaging_guide.html#dependencies"><em>Dependencies</em></a> and
+<a class="reference internal" href="packaging_guide.html#virtual-dependencies"><em>Virtual dependencies</em></a>.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.multimethod" title="spack.multimethod"><tt class="xref py py-mod docutils literal"><span class="pre">spack.multimethod</span></tt></a></dt>
+<dd>Implementation of the <a class="reference internal" href="spack.html#spack.multimethod.when" title="spack.multimethod.when"><tt class="xref py py-func docutils literal"><span class="pre">&#64;when</span></tt></a>
+decorator, which allows <a class="reference internal" href="packaging_guide.html#multimethods"><em>multimethods</em></a> in
+packages.</dd>
+</dl>
+</div>
+<div class="section" id="spec-related-modules">
+<h3>Spec-related modules<a class="headerlink" href="#spec-related-modules" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><a class="reference internal" href="spack.html#module-spack.spec" title="spack.spec"><tt class="xref py py-mod docutils literal"><span class="pre">spack.spec</span></tt></a></dt>
+<dd>Contains <a class="reference internal" href="spack.html#spack.spec.Spec" title="spack.spec.Spec"><tt class="xref py py-class docutils literal"><span class="pre">Spec</span></tt></a> and <a class="reference internal" href="spack.html#spack.spec.SpecParser" title="spack.spec.SpecParser"><tt class="xref py py-class docutils literal"><span class="pre">SpecParser</span></tt></a>. Also implements most of the logic for
+normalization and concretization of specs.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.parse" title="spack.parse"><tt class="xref py py-mod docutils literal"><span class="pre">spack.parse</span></tt></a></dt>
+<dd>Contains some base classes for implementing simple recursive descent
+parsers: <a class="reference internal" href="spack.html#spack.parse.Parser" title="spack.parse.Parser"><tt class="xref py py-class docutils literal"><span class="pre">Parser</span></tt></a> and <a class="reference internal" href="spack.html#spack.parse.Lexer" title="spack.parse.Lexer"><tt class="xref py py-class docutils literal"><span class="pre">Lexer</span></tt></a>.  Used by <a class="reference internal" href="spack.html#spack.spec.SpecParser" title="spack.spec.SpecParser"><tt class="xref py py-class docutils literal"><span class="pre">SpecParser</span></tt></a>.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.concretize" title="spack.concretize"><tt class="xref py py-mod docutils literal"><span class="pre">spack.concretize</span></tt></a></dt>
+<dd>Contains <a class="reference internal" href="spack.html#spack.concretize.DefaultConcretizer" title="spack.concretize.DefaultConcretizer"><tt class="xref py py-class docutils literal"><span class="pre">DefaultConcretizer</span></tt></a> implementation, which allows
+site administrators to change Spack&#8217;s <a class="reference internal" href="site_configuration.html#concretization-policies"><em>Concretization policies</em></a>.</dd>
+<dt><a class="reference internal" href="spack.html#spack.version" title="spack.version"><tt class="xref py py-mod docutils literal"><span class="pre">spack.version</span></tt></a></dt>
+<dd>Implements a simple <a class="reference internal" href="spack.html#spack.version.Version" title="spack.version.Version"><tt class="xref py py-class docutils literal"><span class="pre">Version</span></tt></a> class
+with simple comparison semantics.  Also implements
+<a class="reference internal" href="spack.html#spack.version.VersionRange" title="spack.version.VersionRange"><tt class="xref py py-class docutils literal"><span class="pre">VersionRange</span></tt></a> and
+<a class="reference internal" href="spack.html#spack.version.VersionList" title="spack.version.VersionList"><tt class="xref py py-class docutils literal"><span class="pre">VersionList</span></tt></a>.  All three are
+comparable with each other and offer union and intersection
+operations.  Spack uses these classes to compare versions and to
+manage version constraints on specs.  Comparison semantics are
+similar to the <tt class="docutils literal"><span class="pre">LooseVersion</span></tt> class in <tt class="docutils literal"><span class="pre">distutils</span></tt> and to the
+way RPM compares version strings.</dd>
+<dt><a class="reference internal" href="spack.compilers.html#module-spack.compilers" title="spack.compilers"><tt class="xref py py-mod docutils literal"><span class="pre">spack.compilers</span></tt></a></dt>
+<dd><p class="first">Submodules contains descriptors for all valid compilers in Spack.
+This is used by the build system to set up the build environment.</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Not yet implemented.  Currently has two compiler descriptions,
+but compilers aren&#8217;t fully integrated with the build process
+yet.</p>
+</div>
+</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.architecture" title="spack.architecture"><tt class="xref py py-mod docutils literal"><span class="pre">spack.architecture</span></tt></a></dt>
+<dd><p class="first"><a class="reference internal" href="spack.html#spack.architecture.sys_type" title="spack.architecture.sys_type"><tt class="xref py py-func docutils literal"><span class="pre">architecture.sys_type</span></tt></a> is used
+to determine the host architecture while building.</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Not yet implemented.  Should eventually have architecture
+descriptions for cross-compiling.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="build-environment">
+<h3>Build environment<a class="headerlink" href="#build-environment" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><a class="reference internal" href="spack.html#module-spack.stage" title="spack.stage"><tt class="xref py py-mod docutils literal"><span class="pre">spack.stage</span></tt></a></dt>
+<dd>Handles creating temporary directories for builds.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.compilation" title="spack.compilation"><tt class="xref py py-mod docutils literal"><span class="pre">spack.compilation</span></tt></a></dt>
+<dd>This contains utility functions used by the compiler wrapper script,
+<tt class="docutils literal"><span class="pre">cc</span></tt>.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.directory_layout" title="spack.directory_layout"><tt class="xref py py-mod docutils literal"><span class="pre">spack.directory_layout</span></tt></a></dt>
+<dd>Classes that control the way an installation directory is laid out.
+Create more implementations of this to change the hierarchy and
+naming scheme in <tt class="docutils literal"><span class="pre">$spack_prefix/opt</span></tt></dd>
+</dl>
+</div>
+<div class="section" id="spack-subcommands">
+<h3>Spack Subcommands<a class="headerlink" href="#spack-subcommands" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><a class="reference internal" href="spack.cmd.html#module-spack.cmd" title="spack.cmd"><tt class="xref py py-mod docutils literal"><span class="pre">spack.cmd</span></tt></a></dt>
+<dd>Each module in this package implements a Spack subcommand.  See
+<a class="reference internal" href="#writing-commands"><em>writing commands</em></a> for details.</dd>
+</dl>
+</div>
+<div class="section" id="unit-tests">
+<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><a class="reference internal" href="spack.test.html#module-spack.test" title="spack.test"><tt class="xref py py-mod docutils literal"><span class="pre">spack.test</span></tt></a></dt>
+<dd>Implements Spack&#8217;s test suite.  Add a module and put its name in
+the test suite in <tt class="docutils literal"><span class="pre">__init__.py</span></tt> to add more unit tests.</dd>
+<dt><tt class="xref py py-mod docutils literal"><span class="pre">spack.test.mock_packages</span></tt></dt>
+<dd>This is a fake package hierarchy used to mock up packages for
+Spack&#8217;s test suite.</dd>
+</dl>
+</div>
+<div class="section" id="other-modules">
+<h3>Other Modules<a class="headerlink" href="#other-modules" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><tt class="xref py py-mod docutils literal"><span class="pre">spack.globals</span></tt></dt>
+<dd>Includes global settings for Spack.  the default policy classes for
+things like <a class="reference internal" href="site_configuration.html#temp-space"><em>temporary space</em></a> and
+<a class="reference internal" href="site_configuration.html#concretization-policies"><em>concretization</em></a>.</dd>
+<dt><tt class="xref py py-mod docutils literal"><span class="pre">spack.tty</span></tt></dt>
+<dd>Basic output functions for all of the messages Spack writes to the
+terminal.</dd>
+<dt><tt class="xref py py-mod docutils literal"><span class="pre">spack.color</span></tt></dt>
+<dd>Implements a color formatting syntax used by <tt class="docutils literal"><span class="pre">spack.tty</span></tt>.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.url" title="spack.url"><tt class="xref py py-mod docutils literal"><span class="pre">spack.url</span></tt></a></dt>
+<dd>URL parsing, for deducing names and versions of packages from
+tarball URLs.</dd>
+<dt><a class="reference internal" href="spack.util.html#module-spack.util" title="spack.util"><tt class="xref py py-mod docutils literal"><span class="pre">spack.util</span></tt></a></dt>
+<dd>In this package are a number of utility modules for the rest of
+Spack.</dd>
+<dt><a class="reference internal" href="spack.html#module-spack.error" title="spack.error"><tt class="xref py py-mod docutils literal"><span class="pre">spack.error</span></tt></a></dt>
+<dd><a class="reference internal" href="spack.html#spack.error.SpackError" title="spack.error.SpackError"><tt class="xref py py-class docutils literal"><span class="pre">SpackError</span></tt></a>, the base class for
+Spack&#8217;s exception hierarchy.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="spec-objects">
+<h2>Spec objects<a class="headerlink" href="#spec-objects" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="package-objects">
+<h2>Package objects<a class="headerlink" href="#package-objects" title="Permalink to this headline">¶</a></h2>
+<p>Most spack commands
+look something like this:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Parse an abstract spec (or specs) from the command line,</li>
+<li><em>Normalize</em> the spec based on information in package files,</li>
+<li><em>Concretize</em> the spec according to some customizable policies,</li>
+<li>Instantiate a package based on the spec, and</li>
+<li>Call methods (e.g., <tt class="docutils literal"><span class="pre">install()</span></tt>) on the package object.</li>
+</ol>
+</div></blockquote>
+<p>The information in Package files is used at all stages in this
+process.</p>
+<p>Conceptually, packages are overloaded.  They contain</p>
+</div>
+<div class="section" id="stage-objects">
+<h2>Stage objects<a class="headerlink" href="#stage-objects" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="writing-commands">
+<span id="id2"></span><h2>Writing commands<a class="headerlink" href="#writing-commands" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id3">
+<h2>Unit tests<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="unit-testing">
+<h2>Unit testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="developer-commands">
+<h2>Developer commands<a class="headerlink" href="#developer-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="spack-doc">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">doc</span></tt><a class="headerlink" href="#spack-doc" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="spack-test">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">test</span></tt><a class="headerlink" href="#spack-test" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="package_list.html" class="btn btn-neutral float-right" title="Package List"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="site_configuration.html" class="btn btn-neutral" title="Site-specific configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+    &copy; Copyright 2013-2014,
+    <a href="https://scalability.llnl.gov/">Lawrence Livermore National Laboratory</a>.
+    <br/>
+    Written by Todd Gamblin, <a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>, LLNL-CODE-647188
+    <br/>
+    Last updated on Oct 08, 2014.
+  &nbsp;&nbsp;
+  <br/><a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

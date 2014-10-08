@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Site-specific configuration &mdash; Spack 1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'1.0',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="Spack 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Developer Guide" href="developer_guide.html"/>
+        <link rel="prev" title="Packaging Guide" href="packaging_guide.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Spack</a>
+        <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install">Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#package-files">Package Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-packages">Creating Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#install-environment">Install environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-wrappers">Shell command wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-package-build-process">The package build process</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Site-specific configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mirrors">Mirrors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#concretization-policies">Concretization policies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spack.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compilation">spack.compilation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Site-specific configuration</a></li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="_sources/site_configuration.txt" rel="nofollow"> View page source</a>
+      
+    </li>
+</ul>
+<hr/>
+
+          
+  <div class="section" id="site-specific-configuration">
+<span id="site-configuration"></span><h1>Site-specific configuration<a class="headerlink" href="#site-specific-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mirrors">
+<span id="id1"></span><h2>Mirrors<a class="headerlink" href="#mirrors" title="Permalink to this headline">¶</a></h2>
+<p>Some sites may not have access to the internet for fetching packages.
+These sites will need a local repository of tarballs from which they
+can get their files.  Spack has support for this with <em>mirrors</em>.  A
+mirror is a URL that points to a directory, either on the local
+filesystem or on some server, containing tarballs for all of Spack&#8217;s
+packages.</p>
+<p>Here&#8217;s an example of a mirror&#8217;s directory structure:</p>
+<div class="highlight-python"><div class="highlight"><pre>mirror/
+    cmake/
+        cmake-2.8.10.2.tar.gz
+    dyninst/
+        DyninstAPI-8.1.1.tgz
+        DyninstAPI-8.1.2.tgz
+    libdwarf/
+        libdwarf-20130126.tar.gz
+        libdwarf-20130207.tar.gz
+        libdwarf-20130729.tar.gz
+    libelf/
+        libelf-0.8.12.tar.gz
+        libelf-0.8.13.tar.gz
+    libunwind/
+        libunwind-1.1.tar.gz
+    mpich/
+        mpich-3.0.4.tar.gz
+    mvapich2/
+    mvapich2-1.9.tgz
+</pre></div>
+</div>
+<p>The structure is very simple.  There is a top-level directory.  The
+second level directories are named after packages, and the third level
+contains tarballs for each package, named as they were in the
+package&#8217;s fetch URL.</p>
+<div class="section" id="spack-mirror">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span></tt><a class="headerlink" href="#spack-mirror" title="Permalink to this headline">¶</a></h3>
+<p>Mirrors are managed with the <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span></tt> command.  The help for
+<tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span></tt> looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ spack mirror -h
+usage: spack mirror [-h] SUBCOMMAND ...
+
+positional arguments:
+  SUBCOMMAND
+    create           Create a directory to be used as a spack mirror, and fill
+                     it with package archives.
+    add              Add a mirror to Spack.
+    remove           Remove a mirror by name.
+    list             Print out available mirrors to the console.
+
+optional arguments:
+  -h, --help         show this help message and exit
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">create</span></tt> command actually builds a mirror by fetching all of its
+packages from the internet and checksumming them.</p>
+<p>The other three commands are for managing mirror configuration.  They
+control the URL(s) from which Spack downloads its packages.</p>
+</div>
+<div class="section" id="spack-mirror-create">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">create</span></tt><a class="headerlink" href="#spack-mirror-create" title="Permalink to this headline">¶</a></h3>
+<p>You can create a mirror using the <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">create</span></tt> command, assuming
+you&#8217;re on a machine where you can access the internet.</p>
+<p>The command will iterate through all of Spack&#8217;s packages and download
+the safe ones into a directory structure like the one above.  Here is
+what it looks like:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>spack mirror create libelf <span class="nv">libdwarf</span>
+<span class="o">==</span>&gt; Created new mirror in spack-mirror-2014-06-24
+<span class="o">==</span>&gt; Trying to fetch from http://www.mr511.de/software/libelf-0.8.13.tar.gz
+<span class="c">##########################################################                81.6%</span>
+<span class="o">==</span>&gt; Checksum passed <span class="k">for </span>libelf@0.8.13
+<span class="o">==</span>&gt; Added spack-mirror-2014-06-24/libelf/libelf-0.8.13.tar.gz to <span class="nv">mirror</span>
+<span class="o">==</span>&gt; Trying to fetch from http://www.mr511.de/software/libelf-0.8.12.tar.gz
+<span class="c">######################################################################    98.6%</span>
+<span class="o">==</span>&gt; Checksum passed <span class="k">for </span>libelf@0.8.12
+<span class="o">==</span>&gt; Added spack-mirror-2014-06-24/libelf/libelf-0.8.12.tar.gz to <span class="nv">mirror</span>
+<span class="o">==</span>&gt; Trying to fetch from http://www.prevanders.net/libdwarf-20130207.tar.gz
+<span class="c">######################################################################    97.3%</span>
+<span class="o">==</span>&gt; Checksum passed <span class="k">for </span>libdwarf@20130207
+<span class="o">==</span>&gt; Added spack-mirror-2014-06-24/libdwarf/libdwarf-20130207.tar.gz to <span class="nv">mirror</span>
+<span class="o">==</span>&gt; Trying to fetch from http://www.prevanders.net/libdwarf-20130126.tar.gz
+<span class="c">########################################################                  78.9%</span>
+<span class="o">==</span>&gt; Checksum passed <span class="k">for </span>libdwarf@20130126
+<span class="o">==</span>&gt; Added spack-mirror-2014-06-24/libdwarf/libdwarf-20130126.tar.gz to <span class="nv">mirror</span>
+<span class="o">==</span>&gt; Trying to fetch from http://www.prevanders.net/libdwarf-20130729.tar.gz
+<span class="c">#############################################################             84.7%</span>
+<span class="o">==</span>&gt; Checksum passed <span class="k">for </span>libdwarf@20130729
+<span class="o">==</span>&gt; Added spack-mirror-2014-06-24/libdwarf/libdwarf-20130729.tar.gz to mirror
+</pre></div>
+</div>
+<p>Once this is done, you can tar up the <tt class="docutils literal"><span class="pre">spack-mirror-2014-06-24</span></tt> directory and
+copy it over to the machine you want it hosted on.</p>
+<div class="section" id="custom-package-sets">
+<h4>Custom package sets<a class="headerlink" href="#custom-package-sets" title="Permalink to this headline">¶</a></h4>
+<p>Normally, <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">create</span></tt> downloads all the archives it has
+checksums for.  If you want to only create a mirror for a subset of
+packages, you can do that by supplying a list of package specs on the
+command line after <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">create</span></tt>.  For example, this
+command:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ spack mirror create libelf@0.8.12: boost@1.44:
+</pre></div>
+</div>
+<p>Will create a mirror for libelf versions greater than or equal to
+0.8.12 and boost versions greater than or equal to 1.44.</p>
+</div>
+<div class="section" id="mirror-files">
+<h4>Mirror files<a class="headerlink" href="#mirror-files" title="Permalink to this headline">¶</a></h4>
+<p>If you have a <em>very</em> large number of packages you want to mirror, you
+can supply a file with specs in it, one per line:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cat specs.txt
+libdwarf
+libelf@0.8.12:
+boost@1.44:
+boost@1.39.0
+...
+$ spack mirror create -f specs.txt
+...
+</pre></div>
+</div>
+<p>This is useful if there is a specific suite of software managed by
+your site.</p>
+</div>
+</div>
+<div class="section" id="spack-mirror-add">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">add</span></tt><a class="headerlink" href="#spack-mirror-add" title="Permalink to this headline">¶</a></h3>
+<p>Once you have a mirrror, you need to let spack know about it.  This is
+relatively simple.  First, figure out the URL for the mirror.  If it&#8217;s
+a file, you can use a file URL like this one:</p>
+<div class="highlight-python"><div class="highlight"><pre>file:///Users/gamblin2/spack-mirror-2014-06-24
+</pre></div>
+</div>
+<p>That points to the directory on the local filesystem.  If it were on a
+web server, you could use a URL like this one:</p>
+<blockquote>
+<div><a class="reference external" href="https://example.com/some/web-hosted/directory/spack-mirror-2014-06-24">https://example.com/some/web-hosted/directory/spack-mirror-2014-06-24</a></div></blockquote>
+<p>Spack will use the URL as the root for all of the packages it fetches.
+You can tell your Spack installation to use that mirror like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>spack mirror add local_filesystem file:///Users/gamblin2/spack-mirror-2014-06-24
+</pre></div>
+</div>
+<p>Each mirror has a name so that you can refer to it again later.</p>
+</div>
+<div class="section" id="spack-mirror-list">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">list</span></tt><a class="headerlink" href="#spack-mirror-list" title="Permalink to this headline">¶</a></h3>
+<p>If you want to see all the mirrors Spack knows about you can run <tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">list</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ spack mirror list
+local_filesystem    file:///Users/gamblin2/spack-mirror-2014-06-24
+</pre></div>
+</div>
+</div>
+<div class="section" id="spack-mirror-remove">
+<h3><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">remove</span></tt><a class="headerlink" href="#spack-mirror-remove" title="Permalink to this headline">¶</a></h3>
+<p>And, if you want to remove a mirror, just remove it by name:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ spack mirror remove local_filesystem
+$ spack mirror list
+==&gt; No mirrors configured.
+</pre></div>
+</div>
+</div>
+<div class="section" id="mirror-precedence">
+<h3>Mirror precedence<a class="headerlink" href="#mirror-precedence" title="Permalink to this headline">¶</a></h3>
+<p>Adding a mirror really just adds a section in <tt class="docutils literal"><span class="pre">~/.spackconfig</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>[mirror &quot;local_filesystem&quot;]
+    url = file:///Users/gamblin2/spack-mirror-2014-06-24
+[mirror &quot;remote_server&quot;]
+    url = https://example.com/some/web-hosted/directory/spack-mirror-2014-06-24
+</pre></div>
+</div>
+<p>If you want to change the order in which mirrors are searched for
+packages, you can edit this file and reorder the sections.  Spack will
+search the topmost mirror first and the bottom-most mirror last.</p>
+</div>
+</div>
+<div class="section" id="temporary-space">
+<span id="temp-space"></span><h2>Temporary space<a class="headerlink" href="#temporary-space" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Temporary space configuration will be moved to configuration files.
+The intructions here are old and refer to <tt class="docutils literal"><span class="pre">__init__.py</span></tt></p>
+</div>
+<p>By default, Spack will try to do all of its building in temporary
+space.  There are two main reasons for this.  First, Spack is designed
+to run out of a user&#8217;s home directory, and on may systems the home
+directory is network mounted and potentially not a very fast
+filesystem.  We create build stages in a temporary directory to avoid
+this.  Second, many systems impose quotas on home directories, and
+<tt class="docutils literal"><span class="pre">/tmp</span></tt> or similar directories often have more available space.  This
+helps conserve space for installations in users&#8217; home directories.</p>
+<p>You can customize temporary directories by editing
+<tt class="docutils literal"><span class="pre">lib/spack/spack/__init__.py</span></tt>.  Specifically, find this part of the file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Whether to build in tmp space or directly in the stage_path.</span>
+<span class="c"># If this is true, then spack will make stage directories in</span>
+<span class="c"># a tmp filesystem, and it will symlink them into stage_path.</span>
+<span class="n">use_tmp_stage</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c"># Locations to use for staging and building, in order of preference</span>
+<span class="c"># Use a %u to add a username to the stage paths here, in case this</span>
+<span class="c"># is a shared filesystem.  Spack will use the first of these paths</span>
+<span class="c"># that it can create.</span>
+<span class="n">tmp_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;/nfs/tmp2/</span><span class="si">%u</span><span class="s">/spack-stage&#39;</span><span class="p">,</span>
+            <span class="s">&#39;/var/tmp/</span><span class="si">%u</span><span class="s">/spack-stage&#39;</span><span class="p">,</span>
+            <span class="s">&#39;/tmp/</span><span class="si">%u</span><span class="s">/spack-stage&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">use_tmp_stage</span></tt> variable controls whether Spack builds
+<strong>directly</strong> inside the <tt class="docutils literal"><span class="pre">var/spack/</span></tt> directory.  Normally, Spack
+will try to find a temporary directory for a build, then it <em>symlinks</em>
+that temporary directory into <tt class="docutils literal"><span class="pre">var/spack/</span></tt> so that you can keep
+track of what temporary directories Spack is using.</p>
+<p>The <tt class="docutils literal"><span class="pre">tmp_dirs</span></tt> variable is a list of paths Spack should search when
+trying to find a temporary directory.  They can optionally contain a
+<tt class="docutils literal"><span class="pre">%u</span></tt>, which will substitute the current user&#8217;s name into the path.
+The list is searched in order, and Spack will create a temporary stage
+in the first directory it finds to which it has write access.  Add
+more elements to the list to indicate where your own site&#8217;s temporary
+directory is.</p>
+</div>
+<div class="section" id="concretization-policies">
+<span id="id2"></span><h2>Concretization policies<a class="headerlink" href="#concretization-policies" title="Permalink to this headline">¶</a></h2>
+<p>When a user asks for a package like <tt class="docutils literal"><span class="pre">mpileaks</span></tt> to be installed,
+Spack has to make decisions like what version should be installed,
+what compiler to use, and how its dependencies should be configured.
+This process is called <em>concretization</em>, and it&#8217;s covered in detail in
+<a class="reference internal" href="packaging_guide.html#abstract-and-concrete"><em>its own section</em></a>.</p>
+<p>The default concretization policies are in the
+<a class="reference internal" href="spack.html#module-spack.concretize" title="spack.concretize"><tt class="xref py py-mod docutils literal"><span class="pre">spack.concretize</span></tt></a> module, specifically in the
+<a class="reference internal" href="spack.html#spack.concretize.DefaultConcretizer" title="spack.concretize.DefaultConcretizer"><tt class="xref py py-class docutils literal"><span class="pre">spack.concretize.DefaultConcretizer</span></tt></a> class.  These are the
+important methods used in the concretization process:</p>
+<ul class="simple">
+<li><a class="reference internal" href="spack.html#spack.concretize.DefaultConcretizer.concretize_version" title="spack.concretize.DefaultConcretizer.concretize_version"><tt class="xref py py-meth docutils literal"><span class="pre">concretize_version(self,</span> <span class="pre">spec)</span></tt></a></li>
+<li><a class="reference internal" href="spack.html#spack.concretize.DefaultConcretizer.concretize_architecture" title="spack.concretize.DefaultConcretizer.concretize_architecture"><tt class="xref py py-meth docutils literal"><span class="pre">concretize_architecture(self,</span> <span class="pre">spec)</span></tt></a></li>
+<li><a class="reference internal" href="spack.html#spack.concretize.DefaultConcretizer.concretize_compiler" title="spack.concretize.DefaultConcretizer.concretize_compiler"><tt class="xref py py-meth docutils literal"><span class="pre">concretize_compiler(self,</span> <span class="pre">spec)</span></tt></a></li>
+<li><a class="reference internal" href="spack.html#spack.concretize.DefaultConcretizer.choose_provider" title="spack.concretize.DefaultConcretizer.choose_provider"><tt class="xref py py-meth docutils literal"><span class="pre">choose_provider(self,</span> <span class="pre">spec,</span> <span class="pre">providers)</span></tt></a></li>
+</ul>
+<p>The first three take a <a class="reference internal" href="spack.html#spack.spec.Spec" title="spack.spec.Spec"><tt class="xref py py-class docutils literal"><span class="pre">Spec</span></tt></a> object and
+modify it by adding constraints for the version.  For example, if the
+input spec had a version range like <cite>1.0:5.0.3</cite>, then the
+<tt class="docutils literal"><span class="pre">concretize_version</span></tt> method should set the spec&#8217;s version to a
+<em>single</em> version in that range.  Likewise, <tt class="docutils literal"><span class="pre">concretize_architecture</span></tt>
+selects an architecture when the input spec does not have one, and
+<tt class="docutils literal"><span class="pre">concretize_compiler</span></tt> needs to set both a concrete compiler and a
+concrete compiler version.</p>
+<p><tt class="docutils literal"><span class="pre">choose_provider()</span></tt> affects how concrete implementations are chosen
+based on a virtual dependency spec.  The input spec is some virtual
+dependency and the <tt class="docutils literal"><span class="pre">providers</span></tt> index is a <tt class="xref py py-class docutils literal"><span class="pre">ProviderIndex</span></tt> object.  The <tt class="docutils literal"><span class="pre">ProviderIndex</span></tt> maps
+the virtual spec to specs for possible implementations, and
+<tt class="docutils literal"><span class="pre">choose_provider()</span></tt> should simply choose one of these.  The
+<tt class="docutils literal"><span class="pre">concretize_*</span></tt> methods will be called on the chosen implementation
+later, so there is no need to fully concretize the spec when returning
+it.</p>
+<p>The <tt class="docutils literal"><span class="pre">DefaultConcretizer</span></tt> is intendend to provide sensible defaults
+for each policy, but there are certain choices that it can&#8217;t know
+about.  For example, one site might prefer <tt class="docutils literal"><span class="pre">OpenMPI</span></tt> over <tt class="docutils literal"><span class="pre">MPICH</span></tt>,
+or another might prefer an old version of some packages.  These types
+of special cases can be integrated with custom concretizers.</p>
+<div class="section" id="writing-a-custom-concretizer">
+<h3>Writing a custom concretizer<a class="headerlink" href="#writing-a-custom-concretizer" title="Permalink to this headline">¶</a></h3>
+<p>To write your own concretizer, you need only subclass
+<tt class="docutils literal"><span class="pre">DefaultConcretizer</span></tt> and override the methods you want to change.
+For example, you might write a class like this to change <em>only</em> the
+<tt class="docutils literal"><span class="pre">concretize_version()</span></tt> behavior:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">spack.concretize</span> <span class="kn">import</span> <span class="n">DefaultConcretizer</span>
+
+<span class="k">class</span> <span class="nc">MyConcretizer</span><span class="p">(</span><span class="n">DefaultConcretizer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">concretize_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
+        <span class="c"># implement custom logic here.</span>
+</pre></div>
+</div>
+<p>Once you have written your custom concretizer, you can make Spack use
+it by editing <tt class="docutils literal"><span class="pre">globals.py</span></tt>.  Find this part of the file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#</span>
+<span class="c"># This controls how things are concretized in spack.</span>
+<span class="c"># Replace it with a subclass if you want different</span>
+<span class="c"># policies.</span>
+<span class="c">#</span>
+<span class="n">concretizer</span> <span class="o">=</span> <span class="n">DefaultConcretizer</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Set concretizer to <em>your own</em> class instead of the default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">concretizer</span> <span class="o">=</span> <span class="n">MyConcretizer</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The next time you run Spack, your changes should take effect.</p>
+</div>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="developer_guide.html" class="btn btn-neutral float-right" title="Developer Guide"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="packaging_guide.html" class="btn btn-neutral" title="Packaging Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+    &copy; Copyright 2013-2014,
+    <a href="https://scalability.llnl.gov/">Lawrence Livermore National Laboratory</a>.
+    <br/>
+    Written by Todd Gamblin, <a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>, LLNL-CODE-647188
+    <br/>
+    Last updated on Oct 08, 2014.
+  &nbsp;&nbsp;
+  <br/><a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>
